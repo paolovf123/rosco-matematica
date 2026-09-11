@@ -1,0 +1,13 @@
+# Binarios: nunca convertir finales de línea
+*.pdf binary
+*.zip binary
+*.png binary
+*.jpg binary
+
+# Texto: normalizar a LF en el repositorio
+* text=auto
+*.js text
+*.html text
+*.md text
+*.py text
+*.yml text
