@@ -4,6 +4,7 @@ Debe servirse por http/https (no abrir index.html con doble clic: el navegador b
 
 Archivos:
 - index.html            el juego
+- rosco-demo.js         rosco DEMO de cultura general (10 letras, 60 s) para explicar el juego; se elige en la pantalla inicial
 - support.js            motor de la página (carga React desde CDN, requiere internet)
 - rosco-preguntas.js    definiciones de cada equipo (Rosco de Matemática). Campo t: "con" (empieza con la letra, se muestra «Con la X»),
                         "contiene" («Contiene la X») o "representada" («Representada por la X»).
@@ -15,3 +16,5 @@ Reglas: gana el equipo con más aciertos. Desempate: si igualan en aciertos, gan
 
 Roscos: tras «¡A jugar!» el moderador asigna el Rosco 1 o 2 a cada equipo (al elegir uno, el otro recibe el restante); empieza el equipo con el Rosco 1.
 La pista aparece con un fundido de 1,5 s cada vez que cambia, para que nadie la lea antes que el moderador.
+
+Modo Demo: en la pantalla inicial elige «Demo · 10 letras · 60 s» para hacer una partida corta de cultura general y explicar las reglas. No cuenta para la competencia.

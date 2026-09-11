@@ -142,6 +142,35 @@ NEW = {
  ],
 }
 
+# ---------- ROSCO DEMO (10 letras por equipo, cultura general, para explicar el juego) ----------
+DEMO_SECONDS = 60
+DEMO = {
+ 1: [
+  ("A","Con la A","Continente donde están China y Japón.","Asia",""),
+  ("C","Con la C","Lugar donde se proyectan películas en pantalla grande.","Cine",""),
+  ("E","Con la E","Animal terrestre más grande; tiene trompa.","Elefante",""),
+  ("G","Con la G","Animal doméstico que maúlla.","Gato",""),
+  ("L","Con la L","Capital del Perú.","Lima",""),
+  ("Ñ","Contiene la Ñ","Fiesta que se celebra el primero de enero. (Palabra compuesta.)","Año Nuevo",""),
+  ("P","Con la P","Ave blanca y negra que vive en el hielo y no vuela.","Pingüino",""),
+  ("S","Con la S","Estrella que da luz y calor a la Tierra.","Sol",""),
+  ("V","Representada por la V","Número que vale esta letra en números romanos.","Cinco",""),
+  ("Z","Con la Z","Calzado que cubre el pie.","Zapato",""),
+ ],
+ 2: [
+  ("B","Con la B","Deporte en el que se encesta un balón en un aro.","Baloncesto","Aceptar «básquet»."),
+  ("D","Con la D","Animal marino muy inteligente que salta sobre las olas.","Delfín",""),
+  ("F","Con la F","Deporte más popular del mundo; se juega con los pies.","Fútbol",""),
+  ("H","Con la H","Insecto pequeño que vive en colonias y carga hojas.","Hormiga",""),
+  ("J","Con la J","Animal africano de cuello muy largo.","Jirafa",""),
+  ("L","Con la L","Fase en la que la Luna se ve como un círculo completo. (Palabra compuesta.)","Luna llena",""),
+  ("M","Con la M","Planeta conocido como el planeta rojo.","Marte",""),
+  ("O","Contiene la O","Instrumento musical de teclas blancas y negras.","Piano",""),
+  ("T","Con la T","Reptil lento que lleva un caparazón.","Tortuga",""),
+  ("X","Representada por la X","Número que vale esta letra en números romanos.","Diez",""),
+ ],
+}
+
 # ---------- VALIDACIÓN AUTOMÁTICA ----------
 def strip_acc(s):
     # quita tildes pero conserva la Ñ
@@ -184,6 +213,7 @@ print("=== Problemas en NUEVO ===")
 bad = []
 for k in (1,2):
     bad += check(NEW[k], f"R{k}")
+    bad += check(DEMO[k], f"DEMO{k}")
 for p in bad: print("  ", p)
 if not bad: print("   ninguno")
 
@@ -207,14 +237,19 @@ s_q     = ParagraphStyle("q", fontName="Arial", fontSize=8.6, leading=10.5)
 s_ans   = ParagraphStyle("a", fontName="Arial-Bold", fontSize=8.6, leading=10.5, textColor=GREEN)
 s_note  = ParagraphStyle("n", fontName="Arial", fontSize=7, leading=8.5, textColor=GREY)
 
-def rosco_page(k):
+W = 10.0*inch
+def _banda(texto):
+    band = Table([[Paragraph(texto, s_band)]], colWidths=[W])
+    band.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),BLUE), ("TOPPADDING",(0,0),(-1,-1),6), ("BOTTOMPADDING",(0,0),(-1,-1),6)]))
+    return band
+
+def _tabla(data):
     rows = [[Paragraph("Letra", s_hdr), Paragraph("Pista (leer al equipo)", s_hdr), Paragraph("Respuesta correcta", s_hdr), Paragraph("Nota", s_hdr)]]
-    for letra, tipo, pista, resp, nota in NEW[k]:
+    for letra, tipo, pista, resp, nota in data:
         rows.append([Paragraph(letra, s_let),
                      Paragraph(f"<b>{tipo}:</b> {pista}", s_q),
                      Paragraph(resp, s_ans),
                      Paragraph(nota, s_note)])
-    W = 10.0*inch
     t = Table(rows, colWidths=[0.55*inch, W-0.55*inch-1.55*inch-1.75*inch, 1.55*inch, 1.75*inch], repeatRows=1)
     st = [("BACKGROUND",(0,0),(-1,0),DARK), ("VALIGN",(0,0),(-1,-1),"MIDDLE"),
           ("BACKGROUND",(0,1),(0,-1),LIGHT), ("LINEBELOW",(0,0),(-1,-1),0.4,colors.HexColor("#C9D3E3")),
@@ -223,8 +258,11 @@ def rosco_page(k):
     for i in range(1, len(rows)):
         if i % 2 == 0: st.append(("BACKGROUND",(1,i),(-1,i),ZEBRA))
     t.setStyle(TableStyle(st))
-    band = Table([[Paragraph(f"ROSCO {k} — Equipo {k}", s_band)]], colWidths=[W])
-    band.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),BLUE), ("TOPPADDING",(0,0),(-1,-1),6), ("BOTTOMPADDING",(0,0),(-1,-1),6)]))
+    return t
+
+def rosco_page(k):
+    t = _tabla(NEW[k])
+    band = _banda(f"ROSCO {k} — Equipo {k}")
     return [Paragraph("Rosco de Matemática — Guía del Moderador", s_title),
             Paragraph(f"Duelo por equipos · <b>{SECONDS} segundos por equipo</b> · Teclas: <b>1</b> Correcto · <b>2</b> Pasapalabra · <b>3</b> Incorrecto", s_sub),
             Paragraph("Lectura: <b>«Con la A»</b> = empieza con A · <b>«Contiene la A»</b> = la lleva dentro · "
@@ -237,7 +275,15 @@ def rosco_page(k):
 out = f"{OUT_DIR}/rosco_moderador_v2.pdf"
 doc = SimpleDocTemplate(out, pagesize=landscape(letter), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.35*inch, bottomMargin=0.3*inch,
                         title="Rosco de Matemática — Guía del Moderador (v2)", author="")
-story = rosco_page(1) + [PageBreak()] + rosco_page(2)
+def demo_page():
+    return [Paragraph("Rosco DEMO — para explicar el juego", s_title),
+            Paragraph(f"Cultura general · <b>10 letras y {DEMO_SECONDS} segundos por equipo</b> · en el juego, elija «Demo» en la pantalla inicial", s_sub),
+            Paragraph("Úselo para mostrar las teclas (1 correcta · 2 pasapalabra · 3 error), cómo vuelven las letras pasadas, "
+                      "los tres tipos de pista, el fin del tiempo y el desempate. No cuenta para la competencia.", s_tip),
+            _banda("ROSCO DEMO 1 — Equipo 1"), Spacer(1, 3), _tabla(DEMO[1]), Spacer(1, 8),
+            _banda("ROSCO DEMO 2 — Equipo 2"), Spacer(1, 3), _tabla(DEMO[2])]
+
+story = rosco_page(1) + [PageBreak()] + rosco_page(2) + [PageBreak()] + demo_page()
 doc.build(story)
 print("\nPDF ->", out)
 
@@ -303,3 +349,16 @@ if os.path.isdir(os.path.dirname(JS_PATH)):
     ])
     open(JS_PATH, "w", encoding="utf-8").write(js)
     print("JS  ->", JS_PATH)
+    DEMO_PATH = f"{OUT_DIR}/juego/deploy/rosco-demo.js"
+    js_demo = "\n".join([
+        "// Generado por generar_rosco.py — rosco DEMO de cultura general (10 letras por equipo) para explicar el juego.",
+        "// Se usa al elegir «Demo» en la pantalla inicial. Mismos campos que rosco-preguntas.js (l, t, r, d).",
+        f"export const TIEMPO = {DEMO_SECONDS}; // segundos por equipo en modo demo (informativo; el juego usa DEMO_TIEMPO en index.html)",
+        "",
+        js_equipo("EQUIPO_A", DEMO[1]),
+        "",
+        js_equipo("EQUIPO_B", DEMO[2]),
+        "",
+    ])
+    open(DEMO_PATH, "w", encoding="utf-8").write(js_demo)
+    print("JS  ->", DEMO_PATH)

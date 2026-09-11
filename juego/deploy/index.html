@@ -39,7 +39,7 @@
         <span style="width:30px; height:30px; border-radius:50%; background:#CE1124; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">C</span>
         <span style="width:30px; height:30px; border-radius:50%; background:#fff; color:#CE1124; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
       </div>
-      <span style="font-size:13px; font-weight:700; opacity:0.75;">Noruega vs Inglaterra · 27 letras · {{ tiempoLabel }} s por turno</span>
+      <span style="font-size:13px; font-weight:700; opacity:0.75;">Noruega vs Inglaterra · {{ modoLabel }}</span>
     </div>
     <div style="display:flex; gap:8px; font-size:12px; font-weight:800; flex-wrap:wrap;">
       <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#22c55e; color:#fff; padding:3px 8px; border-radius:8px; font-family:inherit;">1</kbd> correcta</span>
@@ -54,6 +54,11 @@
       <div style="text-align:center; max-width:720px;">
         <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:#BA0C2F;">Noruega</span> vs <span style="color:#CE1124;">Inglaterra</span></h1>
         <p style="font-size:18px; font-weight:700; margin:0; color:#4c4a7a; text-wrap:pretty;">Si pasas o fallas, ¡sigues jugando! Las letras pasadas vuelven al final. Gana quien acierte más letras; si empatan, gana el equipo que haya usado menos tiempo.</p>
+        <div style="display:inline-flex; gap:6px; margin-top:20px; padding:6px; border-radius:999px; background:#fff; box-shadow:0 4px 0 #e7e2d8;">
+          <button onClick="{{ setModoReal }}" style="padding:10px 18px; border-radius:999px; border:0; background:{{ modoRealBg }}; color:{{ modoRealFg }}; font-weight:800; font-size:15px; transition:background .2s;">Partida · 27 letras · {{ tiempoRealLabel }} s</button>
+          <button onClick="{{ setModoDemo }}" style="padding:10px 18px; border-radius:999px; border:0; background:{{ modoDemoBg }}; color:{{ modoDemoFg }}; font-weight:800; font-size:15px; transition:background .2s;">Demo · 10 letras · {{ tiempoDemoLabel }} s</button>
+        </div>
+        <p style="font-size:14px; font-weight:700; margin:10px 0 0; color:#6b6a8f;">{{ modoHelp }}</p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
         <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#00205B; color:#fff; box-shadow:0 8px 0 #BA0C2F;">
@@ -188,16 +193,18 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;tiempo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;min&quot;:30,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Reglas&quot;},&quot;sonido&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentador&quot;}}">
 class Component extends DCLogic {
-  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null };
+  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null, modo: 'real' };
   COLORS = [{ main: '#00205B', dark: '#BA0C2F', soft: '#c9d3ea', dot: '#c9d3ea', confetti: ['#BA0C2F', '#ffffff', '#00205B'] }, { main: '#CE1124', dark: '#8E0B1A', soft: '#f4c7cc', dot: '#f4c7cc', confetti: ['#CE1124', '#8E0B1A', '#1e1b4b'] }];
+  DEMO_TIEMPO = 60; // segundos por equipo en modo demo
   async componentDidMount() {
     this.data = await import('./rosco-preguntas.js');
+    try { this.demo = await import('./rosco-demo.js'); } catch (e) { this.demo = null; }
     this.forceUpdate();
     this._key = (e) => this.onKey(e);
     window.addEventListener('keydown', this._key);
   }
   componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearTimeout(this._ft); }
-  T() { return Number(this.props.tiempo ?? 180); }
+  T() { return this.state.modo === 'demo' ? this.DEMO_TIEMPO : Number(this.props.tiempo ?? 180); }
 
   snd(kind) {
     if (!(this.props.sonido ?? true)) return;
@@ -254,7 +261,8 @@ class Component extends DCLogic {
   start() {
     const r = this.state.drawResult;
     if (!this.data || !r) return;
-    const sets = { 1: this.data.EQUIPO_A, 2: this.data.EQUIPO_B };
+    const src = this.state.modo === 'demo' && this.demo ? this.demo : this.data;
+    const sets = { 1: src.EQUIPO_A, 2: src.EQUIPO_B };
     const mk = (src, rosco) => ({ time: this.T(), idx: 0, done: false, rosco, letters: src.map((q) => ({ ...q, st: 'pending' })) });
     clearInterval(this._iv);
     this.snd('start');
@@ -312,6 +320,14 @@ class Component extends DCLogic {
     const v = {
       isSetup: phase === 'setup', isDraw: phase === 'draw', isPlay: phase === 'play', isEnd: phase === 'end',
       tiempoLabel: String(this.T()), showAnswer: this.props.mostrarRespuesta ?? true,
+      modoLabel: (() => { const demo = this.state.modo === 'demo'; const src = demo ? this.demo : this.data;
+        const n = teams ? teams[0].letters.length : (src ? src.EQUIPO_A.length : (demo ? 10 : 27));
+        return `${demo ? 'DEMO · ' : ''}${n} letras · ${this.T()} s por turno`; })(),
+      setModoReal: () => this.setState({ modo: 'real' }), setModoDemo: () => { if (this.demo) this.setState({ modo: 'demo' }); },
+      modoRealBg: this.state.modo === 'demo' ? 'transparent' : '#1e1b4b', modoRealFg: this.state.modo === 'demo' ? '#1e1b4b' : '#fff',
+      modoDemoBg: this.state.modo === 'demo' ? '#facc15' : 'transparent', modoDemoFg: '#1e1b4b',
+      tiempoRealLabel: String(Number(this.props.tiempo ?? 180)), tiempoDemoLabel: String(this.DEMO_TIEMPO),
+      modoHelp: this.state.modo === 'demo' ? 'Preguntas de cultura general, solo para explicar cómo se juega.' : 'Preguntas de matemática para la competencia.',
       nameA: names[0], nameB: names[1],
       onNameA: (e) => this.setState({ names: [e.target.value, names[1]] }),
       onNameB: (e) => this.setState({ names: [names[0], e.target.value] }),

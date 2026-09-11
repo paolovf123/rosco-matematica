@@ -15,6 +15,10 @@ Juego tipo *pasapalabra* para un duelo entre dos equipos. Cada equipo tiene **18
 
   El motor carga React desde un CDN, por lo que necesita internet.
 
+## Modo demo
+
+En la pantalla inicial se puede elegir **Demo · 10 letras · 60 s**: un rosco corto de cultura general por equipo para explicar a los participantes cómo se juega antes de la competencia. Las preguntas están en `juego/deploy/rosco-demo.js` y en la tercera página del PDF del moderador.
+
 ## Reglas
 
 | Tecla | Acción |
@@ -32,10 +36,10 @@ Gana el equipo con más aciertos. **Desempate:** si igualan en aciertos, gana el
 
 | Archivo | Para qué sirve |
 |---|---|
-| `juego/deploy/` | El juego (HTML + JS). `rosco-preguntas.js` contiene las definiciones de cada equipo. |
+| `juego/deploy/` | El juego (HTML + JS). `rosco-preguntas.js` contiene las definiciones de cada equipo; `rosco-demo.js`, las del modo demo. |
 | `rosco_moderador_v2.pdf` | Guía del moderador: pistas, respuestas correctas y respuestas alternativas aceptadas. **Imprimir para quien modera**, porque el juego no muestra las respuestas. |
 | `rosco_moderador_cambios.md` | Registro de correcciones frente a la versión original y estimación de tiempos por vuelta. |
-| `generar_rosco.py` | Fuente única de las preguntas. Genera el PDF, el registro de cambios y `rosco-preguntas.js`. |
+| `generar_rosco.py` | Fuente única de las preguntas. Genera el PDF, el registro de cambios, `rosco-preguntas.js` y `rosco-demo.js`. |
 | `rosco_moderador.pdf` | Versión original, solo como referencia. |
 
 ## Editar las preguntas
