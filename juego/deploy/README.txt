@@ -18,3 +18,5 @@ Roscos: tras «¡A jugar!» el moderador asigna el Rosco 1 o 2 a cada equipo (al
 La pista aparece con un fundido de 2,5 s cada vez que cambia, para que nadie la lea antes que el moderador.
 
 Modo Demo: en la pantalla inicial elige «Demo · 10 letras · 60 s» para hacer una partida corta de cultura general y explicar las reglas. No cuenta para la competencia.
+
+Al pulsar Iniciar (o Espacio) hay una cuenta regresiva 3-2-1 con tictac antes de que corra el reloj y aparezca la pista. Durante el turno suena un tictac suave que se vuelve más intenso conforme se agota el tiempo.

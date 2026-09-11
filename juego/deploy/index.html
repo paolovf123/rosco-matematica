@@ -193,7 +193,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;tiempo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;min&quot;:30,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Reglas&quot;},&quot;sonido&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentador&quot;}}">
 class Component extends DCLogic {
-  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null, modo: 'real' };
+  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null, modo: 'real', countdown: null };
   COLORS = [{ main: '#00205B', dark: '#BA0C2F', soft: '#c9d3ea', dot: '#c9d3ea', confetti: ['#BA0C2F', '#ffffff', '#00205B'] }, { main: '#CE1124', dark: '#8E0B1A', soft: '#f4c7cc', dot: '#f4c7cc', confetti: ['#CE1124', '#8E0B1A', '#1e1b4b'] }];
   DEMO_TIEMPO = 60; // segundos por equipo en modo demo
   async componentDidMount() {
@@ -203,10 +203,10 @@ class Component extends DCLogic {
     this._key = (e) => this.onKey(e);
     window.addEventListener('keydown', this._key);
   }
-  componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearTimeout(this._ft); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearInterval(this._cd); clearTimeout(this._ft); }
   T() { return this.state.modo === 'demo' ? this.DEMO_TIEMPO : Number(this.props.tiempo ?? 180); }
 
-  snd(kind) {
+  snd(kind, arg) {
     if (!(this.props.sonido ?? true)) return;
     try {
       const ac = this._ac || (this._ac = new (window.AudioContext || window.webkitAudioContext)());
@@ -224,11 +224,23 @@ class Component extends DCLogic {
         ko: () => { tone(170, 0, 0.4, 'sawtooth', 0.18, 80); },
         pass: () => { tone(480, 0, 0.14, 'square', 0.1, 900); },
         tick: () => tone(1100, 0, 0.05, 'square', 0.07),
+        // cuenta regresiva 3-2-1: tic y tac alternados, bien audibles
+        cdTick: (n) => { tone(n % 2 ? 1700 : 1150, 0, 0.07, 'square', 0.2); tone(n % 2 ? 1700 : 1150, 0.09, 0.04, 'square', 0.08); },
+        // tictac del reloj en juego. p = fracción de tiempo consumido (0 al inicio, 1 sin tiempo):
+        // empieza como un tic suave y, conforme avanza, sube de volumen y tono, aparece un latido grave y al final se duplica
+        tictac: (p = 0) => {
+          const odd = (this._tt = !this._tt);
+          const g = 0.05 + 0.17 * p;
+          const f = (odd ? 1900 : 1300) * (1 + 0.3 * p);
+          tone(f, 0, 0.035, 'square', g);
+          if (p > 0.5) tone(110 + 70 * p, 0, 0.14, 'sawtooth', 0.05 + 0.2 * (p - 0.5) * 2, 55);
+          if (p > 0.85) { tone(f * 1.15, 0.5, 0.035, 'square', g); if (p > 0.85) tone(110 + 70 * p, 0.5, 0.1, 'sawtooth', 0.12, 55); }
+        },
         timeout: () => { tone(620, 0, 0.2, 'triangle'); tone(460, 0.2, 0.2, 'triangle'); tone(300, 0.4, 0.5, 'triangle'); },
         start: () => { tone(440, 0, 0.1, 'triangle'); tone(880, 0.1, 0.25, 'triangle'); },
         win: () => { [523, 659, 784, 1047].forEach((f, i) => tone(f, i * 0.13, 0.2, 'triangle')); tone(1047, 0.55, 0.6, 'triangle'); tone(1319, 0.55, 0.6, 'triangle', 0.12); },
       };
-      S[kind] && S[kind]();
+      S[kind] && S[kind](arg);
     } catch (e) {}
   }
   flash(text, bg, fg = '#fff') {
@@ -268,13 +280,29 @@ class Component extends DCLogic {
     this.snd('start');
     this.setState({ phase: 'play', teams: [mk(sets[r[0]], r[0]), mk(sets[r[1]], r[1])], active: r.indexOf(1), running: false, last: null });
   }
-  restart() { clearInterval(this._iv); this.setState({ phase: 'setup', teams: null, running: false, last: null, drawResult: null }); }
+  restart() { clearInterval(this._iv); clearInterval(this._cd); this.setState({ phase: 'setup', teams: null, running: false, last: null, drawResult: null, countdown: null }); }
   setRunning(r) {
-    clearInterval(this._iv);
-    if (r) { this._iv = setInterval(() => this.tick(), 1000); this.snd('start'); }
-    this.setState({ running: r });
+    clearInterval(this._iv); clearInterval(this._cd);
+    if (!r) { this.setState({ running: false, countdown: null }); return; }
+    // cuenta regresiva 3-2-1 con tictac; la pista sigue oculta hasta que el reloj arranca
+    let n = 3;
+    const step = () => {
+      if (this.state.phase !== 'play') { clearInterval(this._cd); return; }
+      if (n > 0) { this.snd('cdTick', n); this.flash(String(n), this.COLORS[this.state.active].main); this.setState({ countdown: n }); n--; return; }
+      clearInterval(this._cd);
+      this._tt = false;
+      this.snd('start');
+      this._iv = setInterval(() => this.tick(), 1000);
+      this.setState({ countdown: null, running: true });
+    };
+    step();
+    this._cd = setInterval(step, 1000);
   }
-  toggleRun() { if (this.state.phase === 'play') this.setRunning(!this.state.running); }
+  toggleRun() {
+    if (this.state.phase !== 'play') return;
+    if (this.state.countdown) { this.setRunning(false); return; } // Espacio durante la cuenta la cancela
+    this.setRunning(!this.state.running);
+  }
   alive(t) { return !t.done && t.time > 0; }
   tick() {
     const { phase, running, teams, active } = this.state;
@@ -283,7 +311,7 @@ class Component extends DCLogic {
     const t = nt[active];
     t.time = Math.max(0, t.time - 1);
     if (t.time === 0) { t.done = true; this.finish(nt, active, 'timeout'); }
-    else { if (t.time <= 10) this.snd('tick'); this.setState({ teams: nt }); }
+    else { this.snd('tictac', 1 - t.time / this.T()); this.setState({ teams: nt }); }
   }
   nextIdx(t, from) {
     const n = t.letters.length;
@@ -306,12 +334,12 @@ class Component extends DCLogic {
   }
   finish(nt, a, why) {
     const o = 1 - a;
-    clearInterval(this._iv);
-    if (!this.alive(nt[o])) { this.snd('win'); this.setState({ teams: nt, phase: 'end', running: false }); return; }
+    clearInterval(this._iv); clearInterval(this._cd);
+    if (!this.alive(nt[o])) { this.snd('win'); this.setState({ teams: nt, phase: 'end', running: false, countdown: null }); return; }
     if (why === 'timeout') this.snd('timeout');
     const name = this.state.names[o] || `Equipo ${o + 1}`;
     setTimeout(() => this.flash(`¡Turno de ${name}!`, this.COLORS[o].main), why === 'timeout' ? 300 : 1000);
-    this.setState({ teams: nt, active: o, running: false, last: null });
+    this.setState({ teams: nt, active: o, running: false, last: null, countdown: null });
   }
   fmt(s) { return String(s); }
 
@@ -333,7 +361,7 @@ class Component extends DCLogic {
       onNameB: (e) => this.setState({ names: [names[0], e.target.value] }),
       start: () => this.start(), restart: () => this.restart(), toggleRun: () => this.toggleRun(), goDraw: () => this.goDraw(), setR12: () => this.asignar([1, 2]), setR21: () => this.asignar([2, 1]),
       onOk: () => running && this.answer('ok'), onPass: () => running && this.answer('pass'), onKo: () => running && this.answer('ko'),
-      runLabel: running ? 'Pausa' : 'Iniciar',
+      runLabel: running ? 'Pausa' : this.state.countdown ? 'Cancelar' : 'Iniciar',
       dotColor: teams && phase === 'play' ? this.COLORS[active].dot : '#e7e2d8',
       wmNor: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmIng: teams && phase === 'play' && active === 1 ? 0.13 : 0,
       hasFlash: !!flash, flashText: flash?.text ?? '', flashBg: flash?.bg ?? '#fff', flashFg: flash?.fg ?? '#fff', flashAnim: flash && flash.id % 2 ? 'flashA' : 'flashB',
@@ -392,7 +420,7 @@ class Component extends DCLogic {
     v.curDefWeight = hidden ? 700 : 800;
     v.curAnswer = cur.r;
     v.statusLeft = `Turno · ${names[active] || 'Equipo ' + (active + 1)} · Rosco ${t.rosco}`;
-    v.statusRight = running ? 'Reloj en marcha' : 'Pulsa Espacio para arrancar el reloj';
+    v.statusRight = running ? 'Reloj en marcha' : this.state.countdown ? `Preparados… ${this.state.countdown}` : 'Pulsa Espacio para arrancar el reloj';
     v.statusColor = running ? '#15803d' : '#b91c1c';
     if (phase === 'end') {
       const T = this.T();
