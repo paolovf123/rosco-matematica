@@ -372,7 +372,7 @@ class Component extends DCLogic {
     v.curDefColor = hidden ? '#6b6a8f' : 'inherit';
     const dkey = `${active}|${t.idx}|${hidden}`; // cambia al mostrar una pista nueva o al reanudar
     if (this._defKey !== dkey) { this._defKey = dkey; this._defN = (this._defN || 0) + 1; }
-    v.defAnim = hidden ? 'none' : `${this._defN % 2 ? 'defInA' : 'defInB'} 1s ease both`;
+    v.defAnim = hidden ? 'none' : `${this._defN % 2 ? 'defInA' : 'defInB'} 1.5s ease both`;
     v.curDefWeight = hidden ? 700 : 800;
     v.curAnswer = cur.r;
     v.statusLeft = `Turno · ${names[active] || 'Equipo ' + (active + 1)} · Rosco ${t.rosco}`;
