@@ -1,0 +1,11 @@
+# Paquetes comprimidos (el contenido ya está en juego/deploy)
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rosco · Noruega vs Portugal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #fff7e6; color: #1e1b4b; font-family: "Nunito", system-ui, sans-serif; }
+    a { color: #2563eb; } a:hover { color: #1e40af; }
+    button { font-family: inherit; cursor: pointer; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1e1b4b; outline-offset: 2px; }
+    @keyframes pop { 0% { transform: translate(-50%,-50%) scale(1); } 40% { transform: translate(-50%,-50%) scale(1.55) rotate(-8deg); } 70% { transform: translate(-50%,-50%) scale(0.9) rotate(4deg); } 100% { transform: translate(-50%,-50%) scale(1); } }
+    @keyframes pulse { 0%,100% { transform: translate(-50%,-50%) scale(1.35); } 50% { transform: translate(-50%,-50%) scale(1.5); } }
+    @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    @keyframes flashA { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5) rotate(-6deg); } 20% { opacity: 1; transform: translate(-50%,-50%) scale(1.1) rotate(2deg); } 75% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.1); } }
+    @keyframes flashB { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5) rotate(6deg); } 20% { opacity: 1; transform: translate(-50%,-50%) scale(1.1) rotate(-2deg); } 75% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.1); } }
+    @keyframes fall { 0% { transform: translateY(-12vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(720deg); } }
+    @keyframes wobble { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  </style>
+</helmet>
+<div style="min-height:100vh; display:flex; flex-direction:column; background:#fbf8f3; background-image:radial-gradient({{ dotColor }} 1.5px, transparent 1.5px); background-size:26px 26px; transition:background-image .5s; color:#1e1b4b; font-family:'Nunito', system-ui, sans-serif; position:relative; overflow:hidden;">
+  <header style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; background:#1e1b4b; color:#fff; flex-wrap:wrap;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="display:flex; gap:4px;">
+        <span style="width:30px; height:30px; border-radius:50%; background:#BA0C2F; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">R</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#fff; color:#00205B; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#00205B; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">S</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#046A38; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">C</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#FFE900; color:#DA291C; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
+      </div>
+      <span style="font-size:13px; font-weight:700; opacity:0.75;">Noruega vs Portugal · 27 letras · {{ tiempoLabel }} s por turno</span>
+    </div>
+    <div style="display:flex; gap:8px; font-size:12px; font-weight:800; flex-wrap:wrap;">
+      <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#22c55e; color:#fff; padding:3px 8px; border-radius:8px; font-family:inherit;">1</kbd> correcta</span>
+      <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#facc15; color:#1e1b4b; padding:3px 8px; border-radius:8px; font-family:inherit;">2</kbd> pasapalabra</span>
+      <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#ef4444; color:#fff; padding:3px 8px; border-radius:8px; font-family:inherit;">3</kbd> error</span>
+      <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#fff; color:#1e1b4b; padding:3px 8px; border-radius:8px; font-family:inherit;">Espacio</kbd> iniciar / pausa</span>
+    </div>
+  </header>
+
+  <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ true }}">
+    <section style="flex:1; padding:40px 24px; display:flex; flex-direction:column; align-items:center; gap:32px; animation:slideIn .5s ease;">
+      <div style="text-align:center; max-width:720px;">
+        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:#BA0C2F;">Noruega</span> vs <span style="color:#046A38;">Portugal</span></h1>
+        <p style="font-size:18px; font-weight:700; margin:0; color:#4c4a7a; text-wrap:pretty;">Cada equipo tiene {{ tiempoLabel }} segundos para dar la vuelta a su rosco de la A a la Z. Si pasas o fallas, ¡sigues jugando! Las letras pasadas vuelven al final. Gana quien acierte más letras; si empatan, gana el equipo que haya usado menos tiempo.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
+        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#00205B; color:#fff; box-shadow:0 8px 0 #BA0C2F;">
+          <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Noruega</span>
+          <input value="{{ nameA }}" onChange="{{ onNameA }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
+        </label>
+        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#046A38; color:#fff; box-shadow:0 8px 0 #DA291C;">
+          <svg viewBox="0 0 30 20" width="45" height="30" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Portugal"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Portugal</span>
+          <input value="{{ nameB }}" onChange="{{ onNameB }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
+        </label>
+      </div>
+      <button onClick="{{ start }}" style="font-family:'Baloo 2'; font-weight:800; font-size:26px; padding:16px 40px; border-radius:999px; border:0; background:#22c55e; color:#fff; box-shadow:0 8px 0 #15803d; transition:transform .1s;" style-hover="transform:translateY(-2px);" style-active="transform:translateY(4px); box-shadow:0 4px 0 #15803d;">¡A jugar!</button>
+      <p style="font-size:13px; font-weight:700; color:#6b6a8f; margin:0;">Las definiciones se editan en <code>rosco-preguntas.js</code>.</p>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isPlay }}" hint-placeholder-val="{{ false }}">
+    <section style="flex:1; display:grid; grid-template-columns:minmax(200px,1fr) minmax(0,2.4fr) minmax(200px,1fr); gap:20px; padding:20px; align-items:start; position:relative; isolation:isolate;">
+      <svg viewBox="0 0 22 16" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmNor }}; transition:opacity .6s; pointer-events:none;"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+      <svg viewBox="0 0 30 20" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmPor }}; transition:opacity .6s; pointer-events:none;"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
+      <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t0.bg }}; color:{{ t0.fg }}; border:4px solid {{ t0.bd }}; box-shadow:{{ t0.shadow }}; transform:{{ t0.tr }}; transition:all .3s;">
+        <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Noruega</span><span style="padding:3px 10px; border-radius:999px; background:{{ t0.badgeBg }}; color:{{ t0.badgeFg }};">{{ t0.badge }}</span></div>
+        <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t0.name }}</div>
+        <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t0.timeColor }}; animation:{{ t0.timeAnim }}; transform-origin:left center;">{{ t0.time }}</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(70px,1fr)); gap:10px;">
+          <div style="background:#22c55e; color:#fff; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.9;">Aciertos</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t0.ok }}</div></div>
+          <div style="background:#ef4444; color:#fff; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.9;">Errores</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t0.ko }}</div></div>
+          <div style="background:#facc15; color:#1e1b4b; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.8;">Quedan</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t0.pend }}</div></div>
+        </div>
+      </aside>
+
+      <main style="display:flex; flex-direction:column; align-items:center; gap:16px; min-width:0;">
+        <div style="width:100%; max-width:640px; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:14px; font-weight:800;">
+          <span style="padding:6px 14px; border-radius:999px; background:{{ teamColor }}; color:#fff;">{{ statusLeft }}</span><span style="color:{{ statusColor }};">{{ statusRight }}</span>
+        </div>
+        <div style="position:relative; width:100%; max-width:640px; aspect-ratio:1;">
+          <div style="position:absolute; inset:9%; border-radius:50%; background:#fff; box-shadow:0 12px 40px rgba(30,27,75,0.12); border:4px solid {{ teamSoft }};"></div>
+          <sc-for list="{{ letters }}" as="l" hint-placeholder-count="27">
+            <div style="position:absolute; left:{{ l.x }}%; top:{{ l.y }}%; width:9.5%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%) scale({{ l.scale }}); background:{{ l.bg }}; color:{{ l.fg }}; border:3px solid {{ l.bd }}; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:clamp(12px,1.7vw,22px); line-height:1; box-shadow:{{ l.shadow }}; animation:{{ l.anim }}; transition:background .2s, color .2s; z-index:{{ l.z }};">{{ l.letter }}</div>
+          </sc-for>
+          <div style="position:absolute; inset:19%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px; text-align:center;">
+            <div style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#6b6a8f;">{{ curKicker }}</div>
+            <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(72px,12vw,150px); line-height:0.85; color:{{ teamColor }}; animation:wobble 2s ease-in-out infinite;">{{ curLetter }}</div>
+            <div style="font-weight:800; font-size:clamp(14px,1.8vw,21px); line-height:1.3; text-wrap:pretty; max-width:90%;">{{ curDef }}</div>
+          </div>
+        </div>
+        <div style="width:100%; max-width:640px; display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px;">
+          <button onClick="{{ onOk }}" style="display:flex; justify-content:center; align-items:center; padding:14px 16px; border-radius:16px; border:0; background:#22c55e; color:#fff; font-weight:800; font-size:16px; box-shadow:0 5px 0 #15803d;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #15803d;">Correcta</button>
+          <button onClick="{{ onPass }}" style="display:flex; justify-content:center; align-items:center; padding:14px 16px; border-radius:16px; border:0; background:#facc15; color:#1e1b4b; font-weight:800; font-size:16px; box-shadow:0 5px 0 #ca8a04;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #ca8a04;">Pasapalabra</button>
+          <button onClick="{{ onKo }}" style="display:flex; justify-content:center; align-items:center; padding:14px 16px; border-radius:16px; border:0; background:#ef4444; color:#fff; font-weight:800; font-size:16px; box-shadow:0 5px 0 #b91c1c;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #b91c1c;">Error</button>
+          <button onClick="{{ toggleRun }}" style="display:flex; justify-content:center; align-items:center; padding:14px 16px; border-radius:16px; border:0; background:#1e1b4b; color:#fff; font-weight:800; font-size:16px; box-shadow:0 5px 0 #0f0d2e;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #0f0d2e;">{{ runLabel }}</button>
+        </div>
+      </main>
+
+      <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t1.bg }}; color:{{ t1.fg }}; border:4px solid {{ t1.bd }}; box-shadow:{{ t1.shadow }}; transform:{{ t1.tr }}; transition:all .3s;">
+        <svg viewBox="0 0 30 20" width="45" height="30" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Portugal"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Portugal</span><span style="padding:3px 10px; border-radius:999px; background:{{ t1.badgeBg }}; color:{{ t1.badgeFg }};">{{ t1.badge }}</span></div>
+        <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t1.name }}</div>
+        <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t1.timeColor }}; animation:{{ t1.timeAnim }}; transform-origin:left center;">{{ t1.time }}</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(70px,1fr)); gap:10px;">
+          <div style="background:#22c55e; color:#fff; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.9;">Aciertos</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t1.ok }}</div></div>
+          <div style="background:#ef4444; color:#fff; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.9;">Errores</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t1.ko }}</div></div>
+          <div style="background:#facc15; color:#1e1b4b; border-radius:16px; padding:10px 12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; opacity:0.8;">Quedan</div><div style="font-family:'Baloo 2'; font-weight:800; font-size:32px; line-height:1;">{{ t1.pend }}</div></div>
+        </div>
+      </aside>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isEnd }}" hint-placeholder-val="{{ false }}">
+    <section style="flex:1; padding:40px 24px; display:flex; flex-direction:column; align-items:center; gap:28px; position:relative; animation:slideIn .5s ease;">
+      <sc-for list="{{ confetti }}" as="c" hint-placeholder-count="0">
+        <div style="position:absolute; top:0; left:{{ c.x }}%; width:12px; height:18px; border-radius:3px; background:{{ c.color }}; animation:fall {{ c.dur }}s linear infinite; animation-delay:{{ c.delay }}s; pointer-events:none;"></div>
+      </sc-for>
+      <div style="text-align:center; position:relative;">
+        <div style="font-size:14px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#6b6a8f;">Fin de la partida</div>
+        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(48px,8vw,104px); line-height:0.95; margin:8px 0 0; color:{{ winnerColor }};">{{ winnerLine }}</h1>
+        <p style="font-size:17px; font-weight:700; margin:12px 0 0; color:#4c4a7a; text-wrap:pretty;">{{ winnerSub }}</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:760px; position:relative;">
+        <sc-for list="{{ results }}" as="r" hint-placeholder-count="2">
+          <div style="padding:24px; border-radius:24px; background:{{ r.bg }}; color:#fff; box-shadow:0 8px 0 {{ r.shadow }}; display:flex; flex-direction:column; gap:12px; transform:{{ r.tr }};">
+            <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ r.name }}</span><span style="font-size:12px; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,0.25);">{{ r.tag }}</span></div>
+            <div style="font-family:'Baloo 2'; font-weight:800; font-size:88px; line-height:1;">{{ r.ok }}<span style="font-size:22px; font-family:'Nunito'; font-weight:800; margin-left:8px; opacity:0.9;">aciertos</span></div>
+            <div style="display:flex; gap:16px; font-weight:800; font-size:15px; opacity:0.95;"><span>{{ r.ko }} errores</span><span>{{ r.pend }} sin resolver</span><span>{{ r.used }} s usados</span><span>{{ r.time }} s restantes</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ restart }}" style="font-family:'Baloo 2'; font-weight:800; font-size:24px; padding:14px 36px; border-radius:999px; border:0; background:#1e1b4b; color:#fff; box-shadow:0 8px 0 #0f0d2e; position:relative;" style-active="transform:translateY(4px); box-shadow:0 4px 0 #0f0d2e;">Jugar otra vez</button>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); padding:18px 40px; border-radius:24px; background:{{ flashBg }}; color:{{ flashFg }}; font-family:'Baloo 2'; font-weight:800; font-size:clamp(32px,5vw,64px); line-height:1; box-shadow:0 16px 48px rgba(30,27,75,0.3); pointer-events:none; z-index:50; animation:{{ flashAnim }} 0.9s ease forwards; white-space:nowrap;">{{ flashText }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tiempo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;min&quot;:30,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Reglas&quot;},&quot;sonido&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentador&quot;}}">
+class Component extends DCLogic {
+  state = { phase: 'setup', names: ['Noruega', 'Portugal'], teams: null, active: 0, running: false, flash: null, last: null };
+  COLORS = [{ main: '#00205B', dark: '#BA0C2F', soft: '#c9d3ea', dot: '#c9d3ea', confetti: ['#BA0C2F', '#ffffff', '#00205B'] }, { main: '#046A38', dark: '#DA291C', soft: '#bfe0cc', dot: '#bfe0cc', confetti: ['#046A38', '#DA291C', '#FFE900'] }];
+  async componentDidMount() {
+    this.data = await import('./rosco-preguntas.js');
+    this.forceUpdate();
+    this._key = (e) => this.onKey(e);
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearTimeout(this._ft); }
+  T() { return Number(this.props.tiempo ?? 180); }
+
+  snd(kind) {
+    if (!(this.props.sonido ?? true)) return;
+    try {
+      const ac = this._ac || (this._ac = new (window.AudioContext || window.webkitAudioContext)());
+      if (ac.state === 'suspended') ac.resume();
+      const now = ac.currentTime;
+      const tone = (f, t0, d, type = 'sine', g = 0.22, f2) => {
+        const o = ac.createOscillator(), gn = ac.createGain();
+        o.type = type; o.frequency.setValueAtTime(f, now + t0);
+        if (f2) o.frequency.exponentialRampToValueAtTime(f2, now + t0 + d);
+        gn.gain.setValueAtTime(0.0001, now + t0); gn.gain.exponentialRampToValueAtTime(g, now + t0 + 0.01); gn.gain.exponentialRampToValueAtTime(0.0001, now + t0 + d);
+        o.connect(gn).connect(ac.destination); o.start(now + t0); o.stop(now + t0 + d + 0.05);
+      };
+      const S = {
+        ok: () => { tone(523, 0, 0.12, 'triangle'); tone(659, 0.1, 0.12, 'triangle'); tone(784, 0.2, 0.3, 'triangle'); },
+        ko: () => { tone(170, 0, 0.4, 'sawtooth', 0.18, 80); },
+        pass: () => { tone(480, 0, 0.14, 'square', 0.1, 900); },
+        tick: () => tone(1100, 0, 0.05, 'square', 0.07),
+        timeout: () => { tone(620, 0, 0.2, 'triangle'); tone(460, 0.2, 0.2, 'triangle'); tone(300, 0.4, 0.5, 'triangle'); },
+        start: () => { tone(440, 0, 0.1, 'triangle'); tone(880, 0.1, 0.25, 'triangle'); },
+        win: () => { [523, 659, 784, 1047].forEach((f, i) => tone(f, i * 0.13, 0.2, 'triangle')); tone(1047, 0.55, 0.6, 'triangle'); tone(1319, 0.55, 0.6, 'triangle', 0.12); },
+      };
+      S[kind] && S[kind]();
+    } catch (e) {}
+  }
+  flash(text, bg, fg = '#fff') {
+    clearTimeout(this._ft);
+    const id = (this.state.flash?.id ?? 0) + 1;
+    this.setState({ flash: { text, bg, fg, id } });
+    this._ft = setTimeout(() => this.setState((s) => (s.flash?.id === id ? { flash: null } : null)), 900);
+  }
+
+  onKey(e) {
+    const { phase, running } = this.state;
+    if (phase === 'setup') { if (e.key === 'Enter' && e.target.tagName !== 'INPUT') this.start(); return; }
+    if (phase !== 'play') return;
+    const k = e.key.toLowerCase();
+    if (k === ' ' || k === 'escape') { e.preventDefault(); this.toggleRun(); return; }
+    if (!running) return;
+    if (k === '1') { e.preventDefault(); this.answer('ok'); }
+    else if (k === '2') { e.preventDefault(); this.answer('pass'); }
+    else if (k === '3') { e.preventDefault(); this.answer('ko'); }
+  }
+  start() {
+    if (!this.data) return;
+    const mk = (src) => ({ time: this.T(), idx: 0, done: false, letters: src.map((q) => ({ ...q, st: 'pending' })) });
+    clearInterval(this._iv);
+    this.snd('start');
+    this.setState({ phase: 'play', teams: [mk(this.data.EQUIPO_A), mk(this.data.EQUIPO_B)], active: 0, running: false, last: null });
+  }
+  restart() { clearInterval(this._iv); this.setState({ phase: 'setup', teams: null, running: false, last: null }); }
+  setRunning(r) {
+    clearInterval(this._iv);
+    if (r) { this._iv = setInterval(() => this.tick(), 1000); this.snd('start'); }
+    this.setState({ running: r });
+  }
+  toggleRun() { if (this.state.phase === 'play') this.setRunning(!this.state.running); }
+  alive(t) { return !t.done && t.time > 0; }
+  tick() {
+    const { phase, running, teams, active } = this.state;
+    if (phase !== 'play' || !running) return;
+    const nt = teams.map((t) => ({ ...t }));
+    const t = nt[active];
+    t.time = Math.max(0, t.time - 1);
+    if (t.time === 0) { t.done = true; this.finish(nt, active, 'timeout'); }
+    else { if (t.time <= 10) this.snd('tick'); this.setState({ teams: nt }); }
+  }
+  nextIdx(t, from) {
+    const n = t.letters.length;
+    for (let k = 1; k <= n; k++) { const i = (from + k) % n; const st = t.letters[i].st; if (st === 'pending' || st === 'pass') return i; }
+    return -1;
+  }
+  answer(kind) {
+    const { teams, active } = this.state;
+    const nt = teams.map((t) => ({ ...t, letters: t.letters.map((l) => ({ ...l })) }));
+    const t = nt[active];
+    const changed = t.idx;
+    t.letters[changed].st = kind;
+    this.snd(kind);
+    const F = { ok: ['¡Correcto!', '#22c55e', '#fff'], ko: ['¡Error!', '#ef4444', '#fff'], pass: ['Pasapalabra', '#facc15', '#1e1b4b'] }[kind];
+    this.flash(F[0], F[1], F[2]);
+    const ni = this.nextIdx(t, t.idx);
+    if (ni < 0) t.done = true; else t.idx = ni;
+    this.setState({ last: { team: active, idx: changed, n: (this.state.last?.n ?? 0) + 1 } });
+    if (t.done) this.finish(nt, active, 'complete'); else this.setState({ teams: nt });
+  }
+  finish(nt, a, why) {
+    const o = 1 - a;
+    clearInterval(this._iv);
+    if (!this.alive(nt[o])) { this.snd('win'); this.setState({ teams: nt, phase: 'end', running: false }); return; }
+    if (why === 'timeout') this.snd('timeout');
+    const name = this.state.names[o] || `Equipo ${o + 1}`;
+    setTimeout(() => this.flash(`¡Turno de ${name}!`, this.COLORS[o].main), why === 'timeout' ? 300 : 1000);
+    this.setState({ teams: nt, active: o, running: false, last: null });
+  }
+  fmt(s) { return String(s); }
+
+  renderVals() {
+    const { phase, names, teams, active, running, flash, last } = this.state;
+    const v = {
+      isSetup: phase === 'setup', isPlay: phase === 'play', isEnd: phase === 'end',
+      tiempoLabel: String(this.T()), showAnswer: this.props.mostrarRespuesta ?? true,
+      nameA: names[0], nameB: names[1],
+      onNameA: (e) => this.setState({ names: [e.target.value, names[1]] }),
+      onNameB: (e) => this.setState({ names: [names[0], e.target.value] }),
+      start: () => this.start(), restart: () => this.restart(), toggleRun: () => this.toggleRun(),
+      onOk: () => running && this.answer('ok'), onPass: () => running && this.answer('pass'), onKo: () => running && this.answer('ko'),
+      runLabel: running ? 'Pausa' : 'Iniciar',
+      dotColor: teams && phase === 'play' ? this.COLORS[active].dot : '#e7e2d8',
+      wmNor: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmPor: teams && phase === 'play' && active === 1 ? 0.13 : 0,
+      hasFlash: !!flash, flashText: flash?.text ?? '', flashBg: flash?.bg ?? '#fff', flashFg: flash?.fg ?? '#fff', flashAnim: flash && flash.id % 2 ? 'flashA' : 'flashB',
+    };
+    if (!teams) return v;
+    const cnt = (t, st) => t.letters.filter((l) => l.st === st).length;
+    const pend = (t) => t.letters.filter((l) => l.st === 'pending' || l.st === 'pass').length;
+    [0, 1].forEach((i) => {
+      const t = teams[i]; const c = this.COLORS[i]; const isA = i === active && phase === 'play';
+      const low = t.time <= 30 && t.time > 0;
+      v['t' + i] = {
+        name: names[i] || `Equipo ${i + 1}`, time: this.fmt(t.time), ok: cnt(t, 'ok'), ko: cnt(t, 'ko'), pend: pend(t),
+        bg: isA ? c.main : '#fff', fg: isA ? '#fff' : '#1e1b4b', bd: isA ? c.dark : c.soft,
+        shadow: isA ? `0 10px 0 ${c.dark}` : '0 4px 0 ' + c.soft, tr: isA ? 'scale(1.02)' : 'scale(1)',
+        badge: isA ? (running ? 'En juego' : 'En pausa') : (t.done ? 'Terminado' : 'Esperando'),
+        badgeBg: isA ? 'rgba(255,255,255,0.25)' : c.soft, badgeFg: isA ? '#fff' : '#1e1b4b',
+        timeColor: low ? (isA ? '#FFE900' : '#DA291C') : 'inherit', timeAnim: low && isA && running ? 'beat 1s ease-in-out infinite' : 'none',
+      };
+    });
+    const t = teams[active]; const c = this.COLORS[active];
+    const cur = t.letters[t.idx];
+    v.teamColor = c.main; v.teamSoft = c.soft;
+    v.letters = t.letters.map((l, i) => {
+      const ang = (-90 + (i * 360) / t.letters.length) * Math.PI / 180;
+      const isCur = i === t.idx && !t.done && phase === 'play';
+      const justChanged = last && last.team === active && last.idx === i;
+      const m = { pending: ['#fff', '#1e1b4b', c.soft], ok: ['#22c55e', '#fff', '#15803d'], ko: ['#ef4444', '#fff', '#b91c1c'], pass: ['#facc15', '#1e1b4b', '#ca8a04'] }[l.st];
+      return { letter: l.l, x: (50 + 45.5 * Math.cos(ang)).toFixed(2), y: (50 + 45.5 * Math.sin(ang)).toFixed(2),
+        bg: isCur ? c.main : m[0], fg: isCur ? '#fff' : m[1], bd: isCur ? c.dark : m[2],
+        scale: isCur ? 1.35 : 1, shadow: isCur ? `0 6px 0 ${c.dark}` : '0 3px 0 rgba(30,27,75,0.12)',
+        anim: isCur ? 'pulse 1.2s ease-in-out infinite' : justChanged ? 'pop .45s ease' : 'none', z: isCur ? 3 : justChanged ? 2 : 1 };
+    });
+    const tipo = cur.t || (/^Contiene/.test(cur.d) ? 'contiene' : /^Representada/.test(cur.d) ? 'representada' : 'con');
+    v.curKicker = { con: 'Con la', contiene: 'Contiene la', representada: 'Representada por la' }[tipo] || 'Con la';
+    v.curLetter = cur.l;
+    v.curDef = cur.d.replace(/^(Contiene|Representada por)\s+\S+:\s*/, '');
+    v.curAnswer = cur.r;
+    v.statusLeft = `Turno · ${names[active] || 'Equipo ' + (active + 1)}`;
+    v.statusRight = running ? 'Reloj en marcha' : 'Pulsa Espacio para arrancar el reloj';
+    v.statusColor = running ? '#15803d' : '#b91c1c';
+    if (phase === 'end') {
+      const T = this.T();
+      const s = [0, 1].map((i) => ({ name: names[i] || `Equipo ${i + 1}`, ok: cnt(teams[i], 'ok'), ko: cnt(teams[i], 'ko'), pend: pend(teams[i]), time: this.fmt(teams[i].time), used: T - teams[i].time, bg: this.COLORS[i].main, shadow: this.COLORS[i].dark }));
+      const d = s[0].ok - s[1].ok;
+      let w = d === 0 ? -1 : d > 0 ? 0 : 1;
+      let byTime = false;
+      if (w === -1) { const dt = s[0].used - s[1].used; if (dt !== 0) { w = dt < 0 ? 0 : 1; byTime = true; } }
+      s.forEach((r, i) => { r.tag = w === -1 ? 'Empate' : i === w ? '¡Ganador!' : 'Buen juego'; r.tr = i === w ? 'scale(1.04)' : 'scale(1)'; });
+      v.results = s;
+      v.winnerLine = w === -1 ? `¡Empate a ${s[0].ok}!` : `¡Gana ${s[w].name}!`;
+      v.winnerSub = w === -1 ? `Mismos aciertos y mismo tiempo usado (${s[0].used} s).`
+        : byTime ? `Empate a ${s[0].ok} aciertos · desempate por tiempo: ${s[w].name} usó ${s[w].used} s y ${s[1 - w].name} usó ${s[1 - w].used} s.`
+        : `${s[w].ok} aciertos frente a ${s[1 - w].ok}.`;
+      v.winnerColor = w === -1 ? '#1e1b4b' : this.COLORS[w].main;
+      const pal = w === -1 ? [...this.COLORS[0].confetti, ...this.COLORS[1].confetti] : this.COLORS[w].confetti;
+      if (!this._conf || this._confW !== w) { this._confW = w; this._conf = Array.from({ length: 36 }, (_, i) => ({ x: (i * 2.77 + (i % 3) * 1.3).toFixed(1), color: pal[i % pal.length], dur: (4 + (i % 5) * 0.7).toFixed(1), delay: ((i * 0.37) % 4).toFixed(2) })); }
+      v.confetti = this._conf;
+    }
+    return v;
+  }
+}
+</script>
+</body>
+</html>
