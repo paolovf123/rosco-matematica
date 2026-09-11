@@ -28,7 +28,7 @@ En la pantalla inicial se puede elegir **Demo · 10 letras · 60 s**: un rosco c
 | `3` | Error |
 | `Espacio` | Iniciar / pausar el reloj |
 
-Antes de empezar, el moderador **asigna el Rosco 1 y el Rosco 2** a cada equipo (al elegir uno, el otro recibe el restante); empieza el equipo con el Rosco 1. La pista solo se muestra con el reloj en marcha y aparece con un fundido de 1,5 s.
+Antes de empezar, el moderador **asigna el Rosco 1 y el Rosco 2** a cada equipo (al elegir uno, el otro recibe el restante); empieza el equipo con el Rosco 1. La pista solo se muestra con el reloj en marcha y aparece con un fundido de 2,5 s.
 
 Gana el equipo con más aciertos. **Desempate:** si igualan en aciertos, gana el que haya usado menos tiempo de su reloj.
 
