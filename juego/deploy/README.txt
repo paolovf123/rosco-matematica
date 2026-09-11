@@ -12,3 +12,6 @@ Archivos:
 Teclas: 1 correcta · 2 pasapalabra · 3 error · Espacio iniciar/pausa
 
 Reglas: gana el equipo con más aciertos. Desempate: si igualan en aciertos, gana el que haya usado menos tiempo (segundos consumidos de su reloj).
+
+Sorteo: tras «¡A jugar!» se sortea qué rosco (1 o 2) juega cada equipo; empieza el equipo que recibe el Rosco 1.
+La pista aparece con un fundido de 1 s cada vez que cambia, para que nadie la lea antes que el moderador.
