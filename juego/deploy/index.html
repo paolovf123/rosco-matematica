@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Rosco de Matemática</title>
+<title>Rosco · Noruega vs Inglaterra</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -39,7 +39,7 @@
         <span style="width:30px; height:30px; border-radius:50%; background:#CE1124; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">C</span>
         <span style="width:30px; height:30px; border-radius:50%; background:#fff; color:#CE1124; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
       </div>
-      <span style="font-size:13px; font-weight:700; opacity:0.75;">{{ nameA }} vs {{ nameB }} · {{ modoLabel }}</span>
+      <span style="font-size:13px; font-weight:700; opacity:0.75;">Noruega vs Inglaterra · {{ modoLabel }}</span>
     </div>
     <div style="display:flex; gap:8px; font-size:12px; font-weight:800; flex-wrap:wrap;">
       <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#22c55e; color:#fff; padding:3px 8px; border-radius:8px; font-family:inherit;">1</kbd> correcta</span>
@@ -52,7 +52,7 @@
   <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ true }}">
     <section style="flex:1; padding:40px 24px; display:flex; flex-direction:column; align-items:center; gap:32px; animation:slideIn .5s ease;">
       <div style="text-align:center; max-width:720px;">
-        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:{{ cA.main }};">{{ nameA }}</span> vs <span style="color:{{ cB.main }};">{{ nameB }}</span></h1>
+        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:#BA0C2F;">Noruega</span> vs <span style="color:#CE1124;">Inglaterra</span></h1>
         <p style="font-size:18px; font-weight:700; margin:0; color:#4c4a7a; text-wrap:pretty;">Si pasas o fallas, ¡sigues jugando! Las letras pasadas vuelven al final. Gana quien acierte más letras; si empatan, gana el equipo que haya usado menos tiempo.</p>
         <div style="display:inline-flex; gap:6px; margin-top:20px; padding:6px; border-radius:999px; background:#fff; box-shadow:0 4px 0 #e7e2d8;">
           <button onClick="{{ setModoReal }}" style="padding:10px 18px; border-radius:999px; border:0; background:{{ modoRealBg }}; color:{{ modoRealFg }}; font-weight:800; font-size:15px; transition:background .2s;">Partida · 27 letras · {{ tiempoRealLabel }} s</button>
@@ -60,95 +60,17 @@
         </div>
         <p style="font-size:14px; font-weight:700; margin:10px 0 0; color:#6b6a8f;">{{ modoHelp }}</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; width:100%; max-width:860px;">
-        <div style="display:flex; flex-direction:column; gap:12px; padding:22px; border-radius:24px; background:{{ cA.main }}; color:{{ cA.fg }}; box-shadow:0 8px 0 {{ cA.dark }}; transition:all .3s;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:44px; height:30px; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25); background:{{ cA.flag }} center/cover no-repeat;"></div>
-            <div><div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Equipo 1 · {{ cA.seccion }}</div>
-            <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1;">{{ cA.nombre }}</div></div>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
-            <button onClick="{{ pA0 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA0bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA0op }}; transform:{{ pA0tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f0 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n0 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s0 }}</span>
-            </button>
-            <button onClick="{{ pA1 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA1bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA1op }}; transform:{{ pA1tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f1 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n1 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s1 }}</span>
-            </button>
-            <button onClick="{{ pA2 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA2bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA2op }}; transform:{{ pA2tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f2 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n2 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s2 }}</span>
-            </button>
-            <button onClick="{{ pA3 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA3bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA3op }}; transform:{{ pA3tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f3 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n3 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s3 }}</span>
-            </button>
-            <button onClick="{{ pA4 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA4bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA4op }}; transform:{{ pA4tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f4 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n4 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s4 }}</span>
-            </button>
-            <button onClick="{{ pA5 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA5bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA5op }}; transform:{{ pA5tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f5 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n5 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s5 }}</span>
-            </button>
-            <button onClick="{{ pA6 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pA6bd }}; background:#fff; color:#1e1b4b; opacity:{{ pA6op }}; transform:{{ pA6tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f6 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n6 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s6 }}</span>
-            </button>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:12px; padding:22px; border-radius:24px; background:{{ cB.main }}; color:{{ cB.fg }}; box-shadow:0 8px 0 {{ cB.dark }}; transition:all .3s;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:44px; height:30px; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25); background:{{ cB.flag }} center/cover no-repeat;"></div>
-            <div><div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Equipo 2 · {{ cB.seccion }}</div>
-            <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1;">{{ cB.nombre }}</div></div>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
-            <button onClick="{{ pB0 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB0bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB0op }}; transform:{{ pB0tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f0 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n0 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s0 }}</span>
-            </button>
-            <button onClick="{{ pB1 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB1bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB1op }}; transform:{{ pB1tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f1 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n1 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s1 }}</span>
-            </button>
-            <button onClick="{{ pB2 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB2bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB2op }}; transform:{{ pB2tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f2 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n2 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s2 }}</span>
-            </button>
-            <button onClick="{{ pB3 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB3bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB3op }}; transform:{{ pB3tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f3 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n3 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s3 }}</span>
-            </button>
-            <button onClick="{{ pB4 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB4bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB4op }}; transform:{{ pB4tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f4 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n4 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s4 }}</span>
-            </button>
-            <button onClick="{{ pB5 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB5bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB5op }}; transform:{{ pB5tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f5 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n5 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s5 }}</span>
-            </button>
-            <button onClick="{{ pB6 }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 6px; border-radius:14px; border:3px solid {{ pB6bd }}; background:#fff; color:#1e1b4b; opacity:{{ pB6op }}; transform:{{ pB6tr }}; transition:all .15s; min-width:86px;">
-              <div style="width:34px; height:23px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.3); background:{{ f6 }} center/cover no-repeat;"></div>
-              <span style="font-weight:800; font-size:13px; line-height:1;">{{ n6 }}</span>
-              <span style="font-weight:700; font-size:10px; opacity:0.7; line-height:1;">{{ s6 }}</span>
-            </button>
-          </div>
-        </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
+        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#00205B; color:#fff; box-shadow:0 8px 0 #BA0C2F;">
+          <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Noruega</span>
+          <input value="{{ nameA }}" onChange="{{ onNameA }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
+        </label>
+        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#CE1124; color:#fff; box-shadow:0 8px 0 #8E0B1A;">
+          <svg viewBox="0 0 30 18" width="45" height="27" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Inglaterra"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Inglaterra</span>
+          <input value="{{ nameB }}" onChange="{{ onNameB }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
+        </label>
       </div>
       <button onClick="{{ goDraw }}" style="font-family:'Baloo 2'; font-weight:800; font-size:26px; padding:16px 40px; border-radius:999px; border:0; background:#22c55e; color:#fff; box-shadow:0 8px 0 #15803d; transition:transform .1s;" style-hover="transform:translateY(-2px);" style-active="transform:translateY(4px); box-shadow:0 4px 0 #15803d;">¡A jugar!</button>
     </section>
@@ -162,22 +84,22 @@
         <p style="font-size:17px; font-weight:700; margin:12px 0 0; color:#4c4a7a; text-wrap:pretty;">{{ drawMsg }}</p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
-        <div style="padding:24px; border-radius:24px; background:{{ dA.bg }}; color:{{ dA.fg }}; box-shadow:0 8px 0 {{ dA.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div style="padding:24px; border-radius:24px; background:{{ dA.bg }}; color:#fff; box-shadow:0 8px 0 {{ dA.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
           <span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ dA.name }}</span>
           <span style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Rosco</span>
           <span style="font-family:'Baloo 2'; font-weight:800; font-size:96px; line-height:1;">{{ dA.rosco }}</span>
           <div style="display:flex; gap:10px; margin-top:6px;">
-            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid currentColor; background:{{ dA.b1Bg }}; color:{{ dA.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
-            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid currentColor; background:{{ dA.b2Bg }}; color:{{ dA.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
+            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dA.b1Bg }}; color:{{ dA.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
+            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dA.b2Bg }}; color:{{ dA.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
           </div>
         </div>
-        <div style="padding:24px; border-radius:24px; background:{{ dB.bg }}; color:{{ dB.fg }}; box-shadow:0 8px 0 {{ dB.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div style="padding:24px; border-radius:24px; background:{{ dB.bg }}; color:#fff; box-shadow:0 8px 0 {{ dB.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
           <span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ dB.name }}</span>
           <span style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Rosco</span>
           <span style="font-family:'Baloo 2'; font-weight:800; font-size:96px; line-height:1;">{{ dB.rosco }}</span>
           <div style="display:flex; gap:10px; margin-top:6px;">
-            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid currentColor; background:{{ dB.b1Bg }}; color:{{ dB.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
-            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid currentColor; background:{{ dB.b2Bg }}; color:{{ dB.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
+            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dB.b1Bg }}; color:{{ dB.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
+            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dB.b2Bg }}; color:{{ dB.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
           </div>
         </div>
       </div>
@@ -188,11 +110,11 @@
 
   <sc-if value="{{ isPlay }}" hint-placeholder-val="{{ false }}">
     <section style="flex:1; display:grid; grid-template-columns:minmax(200px,1fr) minmax(0,2.4fr) minmax(200px,1fr); gap:20px; padding:20px; align-items:start; position:relative; isolation:isolate;">
-      <div style="position:absolute; inset:0; z-index:-1; opacity:{{ wmA }}; background:{{ cA.flag }} center/cover no-repeat; transition:opacity .6s; pointer-events:none;"></div>
-      <div style="position:absolute; inset:0; z-index:-1; opacity:{{ wmB }}; background:{{ cB.flag }} center/cover no-repeat; transition:opacity .6s; pointer-events:none;"></div>
+      <svg viewBox="0 0 22 16" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmNor }}; transition:opacity .6s; pointer-events:none;"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+      <svg viewBox="0 0 30 18" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmIng }}; transition:opacity .6s; pointer-events:none;"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
       <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t0.bg }}; color:{{ t0.fg }}; border:4px solid {{ t0.bd }}; box-shadow:{{ t0.shadow }}; transform:{{ t0.tr }}; transition:all .3s;">
-        <div style="width:44px; height:30px; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25); background:{{ cA.flag }} center/cover no-repeat;"></div>
-        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>{{ t0.seccion }}</span><span style="padding:3px 10px; border-radius:999px; background:{{ t0.badgeBg }}; color:{{ t0.badgeFg }};">{{ t0.badge }}</span></div>
+        <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Noruega</span><span style="padding:3px 10px; border-radius:999px; background:{{ t0.badgeBg }}; color:{{ t0.badgeFg }};">{{ t0.badge }}</span></div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t0.name }}</div>
         <div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.8;">{{ t0.rosco }}</div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t0.timeColor }}; animation:{{ t0.timeAnim }}; transform-origin:left center;">{{ t0.time }}<span style="font-family:'Nunito', system-ui, sans-serif; font-size:0.34em; font-weight:800; margin-left:4px; opacity:0.85;">s</span></div>
@@ -205,7 +127,7 @@
 
       <main style="display:flex; flex-direction:column; align-items:center; gap:16px; min-width:0;">
         <div style="width:100%; max-width:640px; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:14px; font-weight:800;">
-          <span style="padding:6px 14px; border-radius:999px; background:{{ teamColor }}; color:{{ teamFg }};">{{ statusLeft }}</span><span style="color:{{ statusColor }};">{{ statusRight }}</span>
+          <span style="padding:6px 14px; border-radius:999px; background:{{ teamColor }}; color:#fff;">{{ statusLeft }}</span><span style="color:{{ statusColor }};">{{ statusRight }}</span>
         </div>
         <div style="position:relative; width:100%; max-width:640px; aspect-ratio:1;">
           <div style="position:absolute; inset:9%; border-radius:50%; background:#fff; box-shadow:0 12px 40px rgba(30,27,75,0.12); border:4px solid {{ teamSoft }};"></div>
@@ -227,8 +149,8 @@
       </main>
 
       <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t1.bg }}; color:{{ t1.fg }}; border:4px solid {{ t1.bd }}; box-shadow:{{ t1.shadow }}; transform:{{ t1.tr }}; transition:all .3s;">
-        <div style="width:44px; height:30px; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25); background:{{ cB.flag }} center/cover no-repeat;"></div>
-        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>{{ t1.seccion }}</span><span style="padding:3px 10px; border-radius:999px; background:{{ t1.badgeBg }}; color:{{ t1.badgeFg }};">{{ t1.badge }}</span></div>
+        <svg viewBox="0 0 30 18" width="45" height="27" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Inglaterra"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Inglaterra</span><span style="padding:3px 10px; border-radius:999px; background:{{ t1.badgeBg }}; color:{{ t1.badgeFg }};">{{ t1.badge }}</span></div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t1.name }}</div>
         <div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.8;">{{ t1.rosco }}</div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t1.timeColor }}; animation:{{ t1.timeAnim }}; transform-origin:left center;">{{ t1.time }}<span style="font-family:'Nunito', system-ui, sans-serif; font-size:0.34em; font-weight:800; margin-left:4px; opacity:0.85;">s</span></div>
@@ -253,7 +175,7 @@
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:760px; position:relative;">
         <sc-for list="{{ results }}" as="r" hint-placeholder-count="2">
-          <div style="padding:24px; border-radius:24px; background:{{ r.bg }}; color:{{ r.fg }}; box-shadow:0 8px 0 {{ r.shadow }}; display:flex; flex-direction:column; gap:12px; transform:{{ r.tr }};">
+          <div style="padding:24px; border-radius:24px; background:{{ r.bg }}; color:#fff; box-shadow:0 8px 0 {{ r.shadow }}; display:flex; flex-direction:column; gap:12px; transform:{{ r.tr }};">
             <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ r.name }}</span><span style="font-size:12px; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,0.25);">{{ r.tag }}</span></div>
             <div style="font-family:'Baloo 2'; font-weight:800; font-size:88px; line-height:1;">{{ r.ok }}<span style="font-size:22px; font-family:'Nunito'; font-weight:800; margin-left:8px; opacity:0.9;">aciertos</span></div>
             <div style="display:flex; gap:16px; font-weight:800; font-size:15px; opacity:0.95;"><span>{{ r.ko }} errores</span><span>{{ r.pend }} sin resolver</span><span>{{ r.used }} s usados</span><span>{{ r.time }} s restantes</span></div>
@@ -270,35 +192,9 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;tiempo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;min&quot;:30,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Reglas&quot;},&quot;sonido&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentador&quot;}}">
-const _FLAG = (svg) => `url("data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">' + svg + '</svg>')}")`;
-const PAISES = [
-  { nombre: 'Perú',     seccion: '1ro Chocano',    main: '#D91023', dark: '#8F0A17', soft: '#f7c5cb', fg: '#ffffff', confetti: ['#D91023', '#ffffff', '#D91023'],
-    flag: _FLAG('<rect width="30" height="20" fill="#D91023"/><rect x="10" width="10" height="20" fill="#fff"/>') },
-  { nombre: 'España',   seccion: '1ro Valdelomar', main: '#F1BF00', dark: '#AA151B', soft: '#fbe9a6', fg: '#1e1b4b', confetti: ['#AA151B', '#F1BF00', '#AA151B'],
-    flag: _FLAG('<rect width="30" height="20" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/>') },
-  { nombre: 'Francia',  seccion: '2do Eguren',     main: '#0055A4', dark: '#EF4135', soft: '#c5d7ee', fg: '#ffffff', confetti: ['#0055A4', '#ffffff', '#EF4135'],
-    flag: _FLAG('<rect width="30" height="20" fill="#EF4135"/><rect width="20" height="20" fill="#fff"/><rect width="10" height="20" fill="#0055A4"/>') },
-  { nombre: 'Japón',    seccion: '2do Vallejo',    main: '#BC002D', dark: '#6e0019', soft: '#f3c4d0', fg: '#ffffff', confetti: ['#BC002D', '#ffffff', '#BC002D'],
-    flag: _FLAG('<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/><rect width="30" height="20" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"/>') },
-  { nombre: 'Portugal', seccion: '3ro Ribeyro',    main: '#046A38', dark: '#DA291C', soft: '#bfe0cc', fg: '#ffffff', confetti: ['#046A38', '#DA291C', '#FFE900'],
-    flag: _FLAG('<rect width="30" height="20" fill="#DA291C"/><rect width="12" height="20" fill="#046A38"/><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"/><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"/>') },
-  { nombre: 'Alemania', seccion: '3ro Alegría',    main: '#1a1a1a', dark: '#DD0000', soft: '#d6d6d6', fg: '#ffffff', confetti: ['#000000', '#DD0000', '#FFCE00'],
-    flag: _FLAG('<rect width="30" height="20" fill="#FFCE00"/><rect width="30" height="13.34" fill="#DD0000"/><rect width="30" height="6.67" fill="#000"/>') },
-  { nombre: 'Brasil',   seccion: '4to Arguedas',   main: '#009C3B', dark: '#FFDF00', soft: '#bfe6cf', fg: '#ffffff', confetti: ['#009C3B', '#FFDF00', '#002776'],
-    flag: _FLAG('<rect width="30" height="20" fill="#009C3B"/><polygon points="15,2.6 26.6,10 15,17.4 3.4,10" fill="#FFDF00"/><circle cx="15" cy="10" r="4.6" fill="#002776"/><path d="M10.8 8.9 Q15 7.4 19.2 9.6" stroke="#fff" stroke-width="0.9" fill="none"/>') },
-];
-PAISES.forEach((c) => { c.dot = c.soft; c.hex = c.confetti; });
-
 class Component extends DCLogic {
-  state = { phase: 'setup', sel: [0, 1], names: [PAISES[0].nombre, PAISES[1].nombre], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null, modo: 'real', countdown: null };
-  get COLORS() { return this.state.sel.map((k) => PAISES[k]); }
-  pick(i, k) { // elegir país; si el otro equipo ya lo tenía, se intercambian
-    const sel = [...this.state.sel];
-    if (sel[1 - i] === k) sel[1 - i] = sel[i];
-    sel[i] = k;
-    this.snd('pass');
-    this.setState({ sel, names: sel.map((j) => PAISES[j].nombre) });
-  }
+  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null, modo: 'real', countdown: null };
+  COLORS = [{ main: '#00205B', dark: '#BA0C2F', soft: '#c9d3ea', dot: '#c9d3ea', confetti: ['#BA0C2F', '#ffffff', '#00205B'] }, { main: '#CE1124', dark: '#8E0B1A', soft: '#f4c7cc', dot: '#f4c7cc', confetti: ['#CE1124', '#8E0B1A', '#1e1b4b'] }];
   DEMO_TIEMPO = 60; // segundos por equipo en modo demo
   async componentDidMount() {
     this.data = await import('./rosco-preguntas.js');
@@ -392,7 +288,7 @@ class Component extends DCLogic {
     let n = 3;
     const step = () => {
       if (this.state.phase !== 'play') { clearInterval(this._cd); return; }
-      if (n > 0) { this.snd('cdTick', n); this.flash(String(n), this.COLORS[this.state.active].main, this.COLORS[this.state.active].fg); this.setState({ countdown: n }); n--; return; }
+      if (n > 0) { this.snd('cdTick', n); this.flash(String(n), this.COLORS[this.state.active].main); this.setState({ countdown: n }); n--; return; }
       clearInterval(this._cd);
       this._tt = false;
       this.snd('start');
@@ -442,7 +338,7 @@ class Component extends DCLogic {
     if (!this.alive(nt[o])) { this.snd('win'); this.setState({ teams: nt, phase: 'end', running: false, countdown: null }); return; }
     if (why === 'timeout') this.snd('timeout');
     const name = this.state.names[o] || `Equipo ${o + 1}`;
-    setTimeout(() => this.flash(`¡Turno de ${name}!`, this.COLORS[o].main, this.COLORS[o].fg), why === 'timeout' ? 300 : 1000);
+    setTimeout(() => this.flash(`¡Turno de ${name}!`, this.COLORS[o].main), why === 'timeout' ? 300 : 1000);
     this.setState({ teams: nt, active: o, running: false, last: null, countdown: null });
   }
   fmt(s) { return String(s); }
@@ -460,30 +356,22 @@ class Component extends DCLogic {
       modoDemoBg: this.state.modo === 'demo' ? '#facc15' : 'transparent', modoDemoFg: '#1e1b4b',
       tiempoRealLabel: String(Number(this.props.tiempo ?? 180)), tiempoDemoLabel: String(this.DEMO_TIEMPO),
       modoHelp: this.state.modo === 'demo' ? 'Preguntas de cultura general, solo para explicar cómo se juega.' : 'Preguntas de matemática para la competencia.',
-      nameA: names[0], nameB: names[1], cA: PAISES[this.state.sel[0]], cB: PAISES[this.state.sel[1]],
+      nameA: names[0], nameB: names[1],
+      onNameA: (e) => this.setState({ names: [e.target.value, names[1]] }),
+      onNameB: (e) => this.setState({ names: [names[0], e.target.value] }),
       start: () => this.start(), restart: () => this.restart(), toggleRun: () => this.toggleRun(), goDraw: () => this.goDraw(), setR12: () => this.asignar([1, 2]), setR21: () => this.asignar([2, 1]),
       onOk: () => running && this.answer('ok'), onPass: () => running && this.answer('pass'), onKo: () => running && this.answer('ko'),
       runLabel: running ? 'Pausa' : this.state.countdown ? 'Cancelar' : 'Iniciar',
       dotColor: teams && phase === 'play' ? this.COLORS[active].dot : '#e7e2d8',
-      wmA: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmB: teams && phase === 'play' && active === 1 ? 0.13 : 0,
+      wmNor: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmIng: teams && phase === 'play' && active === 1 ? 0.13 : 0,
       hasFlash: !!flash, flashText: flash?.text ?? '', flashBg: flash?.bg ?? '#fff', flashFg: flash?.fg ?? '#fff', flashAnim: flash && flash.id % 2 ? 'flashA' : 'flashB',
     };
-    PAISES.forEach((c, k) => {
-      v['f' + k] = c.flag; v['n' + k] = c.nombre; v['s' + k] = c.seccion;
-      ['A', 'B'].forEach((L, i) => {
-        const on = this.state.sel[i] === k;
-        v['p' + L + k] = () => this.pick(i, k);
-        v['p' + L + k + 'bd'] = on ? '#1e1b4b' : 'transparent';
-        v['p' + L + k + 'op'] = on ? 1 : 0.72;
-        v['p' + L + k + 'tr'] = on ? 'scale(1.06)' : 'scale(1)';
-      });
-    });
     if (phase === 'draw') {
       const r = this.state.drawResult;
       const card = (i) => {
         const c = this.COLORS[i]; const mine = r ? r[i] : 0;
-        const btn = (n) => (mine === n ? { bg: c.fg, fg: c.main } : { bg: 'transparent', fg: c.fg });
-        return { name: names[i] || `Equipo ${i + 1}`, rosco: r ? String(r[i]) : '?', bg: c.main, shadow: c.dark, fg: c.fg,
+        const btn = (n) => (mine === n ? { bg: '#fff', fg: c.main } : { bg: 'transparent', fg: '#fff' });
+        return { name: names[i] || `Equipo ${i + 1}`, rosco: r ? String(r[i]) : '?', bg: c.main, shadow: c.dark,
           b1Bg: btn(1).bg, b1Fg: btn(1).fg, b2Bg: btn(2).bg, b2Fg: btn(2).fg };
       };
       v.dA = card(0); v.dB = card(1);
@@ -500,23 +388,23 @@ class Component extends DCLogic {
       const low = t.time <= 30 && t.time > 0;
       v['t' + i] = {
         name: names[i] || `Equipo ${i + 1}`, rosco: `Rosco ${t.rosco}`, time: this.fmt(t.time), ok: cnt(t, 'ok'), ko: cnt(t, 'ko'), pend: pend(t),
-        bg: isA ? c.main : '#fff', fg: isA ? c.fg : '#1e1b4b', bd: isA ? c.dark : c.soft, seccion: c.seccion,
+        bg: isA ? c.main : '#fff', fg: isA ? '#fff' : '#1e1b4b', bd: isA ? c.dark : c.soft,
         shadow: isA ? `0 10px 0 ${c.dark}` : '0 4px 0 ' + c.soft, tr: isA ? 'scale(1.02)' : 'scale(1)',
         badge: isA ? (running ? 'En juego' : 'En pausa') : (t.done ? 'Terminado' : 'Esperando'),
-        badgeBg: isA ? (c.fg === '#ffffff' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.12)') : c.soft, badgeFg: isA ? c.fg : '#1e1b4b',
-        timeColor: low ? (isA ? (c.fg === '#ffffff' ? '#FFE900' : '#b91c1c') : '#DA291C') : 'inherit', timeAnim: low && isA && running ? 'beat 1s ease-in-out infinite' : 'none',
+        badgeBg: isA ? 'rgba(255,255,255,0.25)' : c.soft, badgeFg: isA ? '#fff' : '#1e1b4b',
+        timeColor: low ? (isA ? '#FFE900' : '#DA291C') : 'inherit', timeAnim: low && isA && running ? 'beat 1s ease-in-out infinite' : 'none',
       };
     });
     const t = teams[active]; const c = this.COLORS[active];
     const cur = t.letters[t.idx];
-    v.teamColor = c.main; v.teamSoft = c.soft; v.teamFg = c.fg;
+    v.teamColor = c.main; v.teamSoft = c.soft;
     v.letters = t.letters.map((l, i) => {
       const ang = (-90 + (i * 360) / t.letters.length) * Math.PI / 180;
       const isCur = i === t.idx && !t.done && phase === 'play';
       const justChanged = last && last.team === active && last.idx === i;
       const m = { pending: ['#fff', '#1e1b4b', c.soft], ok: ['#22c55e', '#fff', '#15803d'], ko: ['#ef4444', '#fff', '#b91c1c'], pass: ['#facc15', '#1e1b4b', '#ca8a04'] }[l.st];
       return { letter: l.l, x: (50 + 45.5 * Math.cos(ang)).toFixed(2), y: (50 + 45.5 * Math.sin(ang)).toFixed(2),
-        bg: isCur ? c.main : m[0], fg: isCur ? c.fg : m[1], bd: isCur ? c.dark : m[2],
+        bg: isCur ? c.main : m[0], fg: isCur ? '#fff' : m[1], bd: isCur ? c.dark : m[2],
         scale: isCur ? 1.35 : 1, shadow: isCur ? `0 6px 0 ${c.dark}` : '0 3px 0 rgba(30,27,75,0.12)',
         anim: isCur ? 'pulse 1.2s ease-in-out infinite' : justChanged ? 'pop .45s ease' : 'none', z: isCur ? 3 : justChanged ? 2 : 1 };
     });
@@ -536,7 +424,7 @@ class Component extends DCLogic {
     v.statusColor = running ? '#15803d' : '#b91c1c';
     if (phase === 'end') {
       const T = this.T();
-      const s = [0, 1].map((i) => ({ name: names[i] || `Equipo ${i + 1}`, ok: cnt(teams[i], 'ok'), ko: cnt(teams[i], 'ko'), pend: pend(teams[i]), time: this.fmt(teams[i].time), used: T - teams[i].time, bg: this.COLORS[i].main, shadow: this.COLORS[i].dark, fg: this.COLORS[i].fg }));
+      const s = [0, 1].map((i) => ({ name: names[i] || `Equipo ${i + 1}`, ok: cnt(teams[i], 'ok'), ko: cnt(teams[i], 'ko'), pend: pend(teams[i]), time: this.fmt(teams[i].time), used: T - teams[i].time, bg: this.COLORS[i].main, shadow: this.COLORS[i].dark }));
       const d = s[0].ok - s[1].ok;
       let w = d === 0 ? -1 : d > 0 ? 0 : 1;
       let byTime = false;

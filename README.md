@@ -15,22 +15,6 @@ Juego tipo *pasapalabra* para un duelo entre dos equipos. Cada equipo tiene **18
 
   El motor carga React desde un CDN, por lo que necesita internet.
 
-## Equipos
-
-En la pantalla inicial cada equipo elige su país; la bandera y los colores cambian con la elección. Si un equipo elige el país del otro, se intercambian.
-
-| País | Sección |
-|---|---|
-| Perú | 1ro Chocano |
-| España | 1ro Valdelomar |
-| Francia | 2do Eguren |
-| Japón | 2do Vallejo |
-| Portugal | 3ro Ribeyro |
-| Alemania | 3ro Alegría |
-| Brasil | 4to Arguedas |
-
-La lista vive en `juego/deploy/index.html` (constante `PAISES`), con la bandera en SVG y los colores de cada equipo.
-
 ## Modo demo
 
 En la pantalla inicial se puede elegir **Demo · 10 letras · 60 s**: un rosco corto de cultura general por equipo para explicar a los participantes cómo se juega antes de la competencia. Las preguntas están en `juego/deploy/rosco-demo.js` y en la tercera página del PDF del moderador.
