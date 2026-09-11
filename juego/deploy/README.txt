@@ -1,4 +1,4 @@
-ROSCO · Noruega vs Inglaterra
+ROSCO · duelo por países
 Sube esta carpeta completa a cualquier hosting estático (Netlify, Vercel, GitHub Pages, un servidor web).
 Debe servirse por http/https (no abrir index.html con doble clic: el navegador bloquea los módulos JS en file://).
 
@@ -20,3 +20,5 @@ La pista aparece con un fundido de 2,5 s cada vez que cambia, para que nadie la 
 Modo Demo: en la pantalla inicial elige «Demo · 10 letras · 60 s» para hacer una partida corta de cultura general y explicar las reglas. No cuenta para la competencia.
 
 Al pulsar Iniciar (o Espacio) hay una cuenta regresiva 3-2-1 con tictac antes de que corra el reloj y aparezca la pista. Durante el turno suena un tictac suave que se vuelve más intenso conforme se agota el tiempo.
+
+Países: en la pantalla inicial cada equipo elige su país (Perú · 1ro Chocano, España · 1ro Valdelomar, Francia · 2do Eguren, Japón · 2do Vallejo, Portugal · 3ro Ribeyro, Alemania · 3ro Alegría, Brasil · 4to Arguedas). La bandera y los colores del equipo cambian con el país. La lista está en index.html (const PAISES).
