@@ -24,7 +24,7 @@ Juego tipo *pasapalabra* para un duelo entre dos equipos. Cada equipo tiene **18
 | `3` | Error |
 | `Espacio` | Iniciar / pausar el reloj |
 
-Antes de empezar hay un **sorteo** que asigna al azar el Rosco 1 y el Rosco 2; empieza el equipo que recibe el Rosco 1. La pista solo se muestra con el reloj en marcha y aparece con un fundido de 1 s.
+Antes de empezar, el moderador **asigna el Rosco 1 y el Rosco 2** a cada equipo (al elegir uno, el otro recibe el restante); empieza el equipo con el Rosco 1. La pista solo se muestra con el reloj en marcha y aparece con un fundido de 1 s.
 
 Gana el equipo con más aciertos. **Desempate:** si igualan en aciertos, gana el que haya usado menos tiempo de su reloj.
 

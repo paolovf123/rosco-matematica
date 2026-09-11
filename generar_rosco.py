@@ -87,7 +87,7 @@ NEW = {
   ("B","Con la B","Sistema numérico que usa solo los dígitos 0 y 1.","Binario",""),
   ("C","Con la C","Línea curva cerrada cuyos puntos equidistan del centro.","Circunferencia","No aceptar «círculo»."),
   ("D","Con la D","Resultado de restar dos cantidades.","Diferencia",""),
-  ("E","Con la E","Igualdad matemática con una o más incógnitas.","Ecuación",""),
+  ("E","Con la E","Aquello que tiene igual valor, función, peso o significado que otra cosa.","Equivalente",""),
   ("F","Con la F","Producto de un número natural por todos los anteriores hasta el 1 (ejemplo: 5×4×3×2×1).","Factorial",""),
   ("G","Con la G","Metal de símbolo Ga que se funde en la mano.","Galio",""),
   ("H","Con la H","Lado mayor de un triángulo rectángulo.","Hipotenusa",""),
@@ -116,7 +116,7 @@ NEW = {
   ("B","Con la B","Recta que divide un ángulo en dos partes iguales.","Bisectriz",""),
   ("C","Con la C","Resultado de dividir una cantidad entre otra.","Cociente",""),
   ("D","Con la D","Segmento que cruza la circunferencia pasando por su centro.","Diámetro",""),
-  ("E","Con la E","Indica cuántas veces se multiplica la base por sí misma.","Exponente",""),
+  ("E","Con la E","Igualdad matemática con una o más incógnitas.","Ecuación",""),
   ("F","Con la F","Número de veces que se repite un dato estadístico.","Frecuencia",""),
   ("G","Con la G","Unidad para medir ángulos; una vuelta completa tiene 360.","Grado",""),
   ("H","Con la H","Polígono de siete lados.","Heptágono",""),
@@ -136,7 +136,7 @@ NEW = {
   ("U","Con la U","Operación entre conjuntos que reúne los elementos de ambos.","Unión",""),
   ("V","Con la V","Punto donde se encuentran dos lados de una figura.","Vértice",""),
   ("W","Representada por la W","Fuerza por desplazamiento; se mide en joules.","Trabajo",""),
-  ("X","Representada por la X","Eje horizontal del plano cartesiano.","Abscisas","Aceptar «abscisa» / «eje de abscisas»."),
+  ("X","Contiene la X","Indica la cantidad de veces que se multiplica una base por sí misma.","Exponente",""),
   ("Y","Contiene la Y","Ángulos que comparten vértice y un lado, sin superponerse.","Adyacentes",""),
   ("Z","Representada por la Z","Cantidad de protones en el núcleo de un átomo. (Palabra compuesta.)","Número atómico",""),
  ],
@@ -248,13 +248,17 @@ lines = ["# Rosco de Matemática — Registro de cambios (v2)", "",
          "- Las respuestas de dos palabras se anuncian como **(Palabra compuesta.)** en lugar de «(Dos palabras)».",
          "- Regla de desempate: si ambos equipos igualan en aciertos, gana el que haya usado menos tiempo de su reloj.",
          "- Se añadió una línea de ritmo para el moderador (≈ 6,5 s por letra) y una columna **Nota** con respuestas alternativas aceptadas.",
-         "- Todas las pistas se acortaron para que una vuelta completa quepa holgadamente en el tiempo (ver tabla de tiempos al final).", ""]
+         "- Todas las pistas se acortaron para que una vuelta completa quepa holgadamente en el tiempo (ver tabla de tiempos al final).",
+         "- Ajustes del 10 de septiembre de 2026: la X del Rosco 2 pasa a **«Contiene la X: Exponente»** (antes «Representada por la X: Abscisas»); "
+         "se incorporó la pista de **Equivalente** para la E y se intercambiaron las E de ambos roscos (Rosco 1: Equivalente · Rosco 2: Ecuación).", ""]
 for k in (1,2):
     lines += [f"## Rosco {k}", "", "| Letra | Tipo de pista | Cambio principal | Pista nueva | Respuesta |", "|---|---|---|---|---|"]
     for (l, t0, p0, r0), (_, t1, p1, r1, nota) in zip(ORIG[k], NEW[k]):
         cat = lambda t: "E" if t.startswith(("Empieza","Con la")) else ("C" if t.startswith("Contiene") else "R")
-        tipo = f"~~{t0}~~ → **{t1}**" if cat(t0) != cat(t1) else t1
-        if cat(t0) != cat(t1): cambio = "**Tipo de pista corregido**"
+        nueva = strip_acc(r0).lower() != strip_acc(r1).lower()
+        tipo = f"~~{t0}~~ → **{t1}**" if cat(t0) != cat(t1) and not nueva else t1
+        if nueva: cambio = f"**Pregunta nueva** (antes: {r0})"
+        elif cat(t0) != cat(t1): cambio = "**Tipo de pista corregido**"
         elif words(p1) < words(p0): cambio = f"Acortada ({words(p0)}→{words(p1)} palabras)"
         else: cambio = "Redacción"
         lines.append(f"| {l} | {tipo} | {cambio} | {p1} | {r1}{(' · _' + nota + '_') if nota else ''} |")

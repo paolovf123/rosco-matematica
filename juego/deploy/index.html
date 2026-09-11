@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Rosco · Inglaterra vs Portugal</title>
+<title>Rosco · Noruega vs Inglaterra</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -33,13 +33,13 @@
   <header style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; background:#1e1b4b; color:#fff; flex-wrap:wrap;">
     <div style="display:flex; align-items:center; gap:14px;">
       <div style="display:flex; gap:4px;">
-        <span style="width:30px; height:30px; border-radius:50%; background:#8E0B1A; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">R</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#BA0C2F; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">R</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#fff; color:#00205B; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#00205B; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">S</span>
+        <span style="width:30px; height:30px; border-radius:50%; background:#CE1124; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">C</span>
         <span style="width:30px; height:30px; border-radius:50%; background:#fff; color:#CE1124; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
-        <span style="width:30px; height:30px; border-radius:50%; background:#CE1124; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">S</span>
-        <span style="width:30px; height:30px; border-radius:50%; background:#046A38; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">C</span>
-        <span style="width:30px; height:30px; border-radius:50%; background:#FFE900; color:#DA291C; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800; font-size:16px;">O</span>
       </div>
-      <span style="font-size:13px; font-weight:700; opacity:0.75;">Inglaterra vs Portugal · 27 letras · {{ tiempoLabel }} s por turno</span>
+      <span style="font-size:13px; font-weight:700; opacity:0.75;">Noruega vs Inglaterra · 27 letras · {{ tiempoLabel }} s por turno</span>
     </div>
     <div style="display:flex; gap:8px; font-size:12px; font-weight:800; flex-wrap:wrap;">
       <span style="display:flex; align-items:center; gap:6px;"><kbd style="background:#22c55e; color:#fff; padding:3px 8px; border-radius:8px; font-family:inherit;">1</kbd> correcta</span>
@@ -52,18 +52,18 @@
   <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ true }}">
     <section style="flex:1; padding:40px 24px; display:flex; flex-direction:column; align-items:center; gap:32px; animation:slideIn .5s ease;">
       <div style="text-align:center; max-width:720px;">
-        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:#CE1124;">Inglaterra</span> vs <span style="color:#046A38;">Portugal</span></h1>
+        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(44px,7vw,84px); line-height:1; margin:0 0 12px; color:#1e1b4b;"><span style="color:#BA0C2F;">Noruega</span> vs <span style="color:#CE1124;">Inglaterra</span></h1>
         <p style="font-size:18px; font-weight:700; margin:0; color:#4c4a7a; text-wrap:pretty;">Si pasas o fallas, ¡sigues jugando! Las letras pasadas vuelven al final. Gana quien acierte más letras; si empatan, gana el equipo que haya usado menos tiempo.</p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
+        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#00205B; color:#fff; box-shadow:0 8px 0 #BA0C2F;">
+          <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Noruega</span>
+          <input value="{{ nameA }}" onChange="{{ onNameA }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
+        </label>
         <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#CE1124; color:#fff; box-shadow:0 8px 0 #8E0B1A;">
           <svg viewBox="0 0 30 18" width="45" height="27" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Inglaterra"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
           <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Inglaterra</span>
-          <input value="{{ nameA }}" onChange="{{ onNameA }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
-        </label>
-        <label style="display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:24px; background:#046A38; color:#fff; box-shadow:0 8px 0 #DA291C;">
-          <svg viewBox="0 0 30 20" width="45" height="30" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Portugal"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
-          <span style="font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Portugal</span>
           <input value="{{ nameB }}" onChange="{{ onNameB }}" placeholder="Nombre del equipo" style="font:inherit; font-weight:800; font-size:22px; padding:12px 14px; border-radius:14px; border:0; background:#fff; color:#1e1b4b; width:100%;">
         </label>
       </div>
@@ -74,34 +74,42 @@
   <sc-if value="{{ isDraw }}" hint-placeholder-val="{{ false }}">
     <section style="flex:1; padding:40px 24px; display:flex; flex-direction:column; align-items:center; gap:28px; animation:slideIn .5s ease;">
       <div style="text-align:center; max-width:720px;">
-        <div style="font-size:14px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#6b6a8f;">Sorteo</div>
-        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(36px,6vw,72px); line-height:1; margin:8px 0 0; color:#1e1b4b;">¿Qué rosco le toca a cada equipo?</h1>
+        <div style="font-size:14px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#6b6a8f;">Roscos</div>
+        <h1 style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(36px,6vw,72px); line-height:1; margin:8px 0 0; color:#1e1b4b;">¿Qué rosco juega cada equipo?</h1>
         <p style="font-size:17px; font-weight:700; margin:12px 0 0; color:#4c4a7a; text-wrap:pretty;">{{ drawMsg }}</p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; width:100%; max-width:720px;">
-        <sc-for list="{{ drawCards }}" as="d" hint-placeholder-count="2">
-          <div style="padding:24px; border-radius:24px; background:{{ d.bg }}; color:#fff; box-shadow:0 8px 0 {{ d.shadow }}; display:flex; flex-direction:column; align-items:center; gap:8px; transform:{{ d.tr }}; opacity:{{ d.op }}; transition:transform .12s, opacity .3s;">
-            <span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ d.name }}</span>
-            <span style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Rosco</span>
-            <span style="font-family:'Baloo 2'; font-weight:800; font-size:104px; line-height:1;">{{ d.rosco }}</span>
+        <div style="padding:24px; border-radius:24px; background:{{ dA.bg }}; color:#fff; box-shadow:0 8px 0 {{ dA.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
+          <span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ dA.name }}</span>
+          <span style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Rosco</span>
+          <span style="font-family:'Baloo 2'; font-weight:800; font-size:96px; line-height:1;">{{ dA.rosco }}</span>
+          <div style="display:flex; gap:10px; margin-top:6px;">
+            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dA.b1Bg }}; color:{{ dA.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
+            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dA.b2Bg }}; color:{{ dA.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
           </div>
-        </sc-for>
+        </div>
+        <div style="padding:24px; border-radius:24px; background:{{ dB.bg }}; color:#fff; box-shadow:0 8px 0 {{ dB.shadow }}; display:flex; flex-direction:column; align-items:center; gap:10px;">
+          <span style="font-family:'Baloo 2'; font-weight:800; font-size:26px;">{{ dB.name }}</span>
+          <span style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;">Rosco</span>
+          <span style="font-family:'Baloo 2'; font-weight:800; font-size:96px; line-height:1;">{{ dB.rosco }}</span>
+          <div style="display:flex; gap:10px; margin-top:6px;">
+            <button onClick="{{ setR21 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dB.b1Bg }}; color:{{ dB.b1Fg }}; font-weight:800; font-size:15px;">Rosco 1</button>
+            <button onClick="{{ setR12 }}" style="padding:10px 18px; border-radius:12px; border:3px solid #fff; background:{{ dB.b2Bg }}; color:{{ dB.b2Fg }}; font-weight:800; font-size:15px;">Rosco 2</button>
+          </div>
+        </div>
       </div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
-        <button onClick="{{ sortear }}" style="font-family:'Baloo 2'; font-weight:800; font-size:24px; padding:14px 36px; border-radius:999px; border:0; background:#facc15; color:#1e1b4b; box-shadow:0 8px 0 #ca8a04;" style-active="transform:translateY(4px); box-shadow:0 4px 0 #ca8a04;">{{ drawBtn }}</button>
-        <button onClick="{{ start }}" style="font-family:'Baloo 2'; font-weight:800; font-size:24px; padding:14px 36px; border-radius:999px; border:0; background:#22c55e; color:#fff; box-shadow:0 8px 0 #15803d; opacity:{{ startOp }}; pointer-events:{{ startPe }}; transition:opacity .3s;" style-active="transform:translateY(4px); box-shadow:0 4px 0 #15803d;">Comenzar partida</button>
-      </div>
-      <p style="font-size:13px; font-weight:700; color:#6b6a8f; margin:0;">Enter o Espacio: sortear y, después, comenzar.</p>
+      <button onClick="{{ start }}" style="font-family:'Baloo 2'; font-weight:800; font-size:24px; padding:14px 36px; border-radius:999px; border:0; background:#22c55e; color:#fff; box-shadow:0 8px 0 #15803d; opacity:{{ startOp }}; pointer-events:{{ startPe }}; transition:opacity .3s;" style-active="transform:translateY(4px); box-shadow:0 4px 0 #15803d;">Comenzar partida</button>
+      <p style="font-size:13px; font-weight:700; color:#6b6a8f; margin:0;">Empieza el equipo con el Rosco 1. Enter o Espacio: comenzar.</p>
     </section>
   </sc-if>
 
   <sc-if value="{{ isPlay }}" hint-placeholder-val="{{ false }}">
     <section style="flex:1; display:grid; grid-template-columns:minmax(200px,1fr) minmax(0,2.4fr) minmax(200px,1fr); gap:20px; padding:20px; align-items:start; position:relative; isolation:isolate;">
+      <svg viewBox="0 0 22 16" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmNor }}; transition:opacity .6s; pointer-events:none;"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
       <svg viewBox="0 0 30 18" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmIng }}; transition:opacity .6s; pointer-events:none;"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
-      <svg viewBox="0 0 30 20" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:{{ wmPor }}; transition:opacity .6s; pointer-events:none;"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
       <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t0.bg }}; color:{{ t0.fg }}; border:4px solid {{ t0.bd }}; box-shadow:{{ t0.shadow }}; transform:{{ t0.tr }}; transition:all .3s;">
-        <svg viewBox="0 0 30 18" width="45" height="27" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Inglaterra"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
-        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Inglaterra</span><span style="padding:3px 10px; border-radius:999px; background:{{ t0.badgeBg }}; color:{{ t0.badgeFg }};">{{ t0.badge }}</span></div>
+        <svg viewBox="0 0 22 16" width="44" height="32" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Noruega"><rect width="22" height="16" fill="#BA0C2F"></rect><rect x="6" width="4" height="16" fill="#fff"></rect><rect y="6" width="22" height="4" fill="#fff"></rect><rect x="7" width="2" height="16" fill="#00205B"></rect><rect y="7" width="22" height="2" fill="#00205B"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Noruega</span><span style="padding:3px 10px; border-radius:999px; background:{{ t0.badgeBg }}; color:{{ t0.badgeFg }};">{{ t0.badge }}</span></div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t0.name }}</div>
         <div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.8;">{{ t0.rosco }}</div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t0.timeColor }}; animation:{{ t0.timeAnim }}; transform-origin:left center;">{{ t0.time }}</div>
@@ -136,8 +144,8 @@
       </main>
 
       <aside style="padding:22px; border-radius:24px; display:flex; flex-direction:column; gap:14px; background:{{ t1.bg }}; color:{{ t1.fg }}; border:4px solid {{ t1.bd }}; box-shadow:{{ t1.shadow }}; transform:{{ t1.tr }}; transition:all .3s;">
-        <svg viewBox="0 0 30 20" width="45" height="30" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Portugal"><rect width="30" height="20" fill="#DA291C"></rect><rect width="12" height="20" fill="#046A38"></rect><circle cx="12" cy="10" r="4.6" fill="none" stroke="#FFE900" stroke-width="1.4"></circle><circle cx="12" cy="10" r="2.4" fill="#DA291C" stroke="#fff" stroke-width="0.8"></circle><rect x="10.9" y="8.7" width="2.2" height="2.6" fill="#fff"></rect><rect x="11.3" y="9.1" width="1.4" height="1.8" fill="#00205B"></rect></svg>
-        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Portugal</span><span style="padding:3px 10px; border-radius:999px; background:{{ t1.badgeBg }}; color:{{ t1.badgeFg }};">{{ t1.badge }}</span></div>
+        <svg viewBox="0 0 30 18" width="45" height="27" style="display:block; border-radius:4px; box-shadow:0 2px 0 rgba(0,0,0,0.25);" aria-label="Bandera de Inglaterra"><rect width="30" height="18" fill="#fff"></rect><rect x="13.2" width="3.6" height="18" fill="#CE1124"></rect><rect y="7.2" width="30" height="3.6" fill="#CE1124"></rect><rect width="30" height="18" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"></rect></svg>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;"><span>Inglaterra</span><span style="padding:3px 10px; border-radius:999px; background:{{ t1.badgeBg }}; color:{{ t1.badgeFg }};">{{ t1.badge }}</span></div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:28px; line-height:1.05;">{{ t1.name }}</div>
         <div style="font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; opacity:0.8;">{{ t1.rosco }}</div>
         <div style="font-family:'Baloo 2'; font-weight:800; font-size:clamp(56px,6vw,92px); line-height:1; font-variant-numeric:tabular-nums; color:{{ t1.timeColor }}; animation:{{ t1.timeAnim }}; transform-origin:left center;">{{ t1.time }}</div>
@@ -180,15 +188,15 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;tiempo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;min&quot;:30,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Reglas&quot;},&quot;sonido&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentador&quot;}}">
 class Component extends DCLogic {
-  state = { phase: 'setup', names: ['Inglaterra', 'Portugal'], teams: null, active: 0, running: false, flash: null, last: null, drawSpin: false, drawResult: null, drawTick: 0 };
-  COLORS = [{ main: '#CE1124', dark: '#8E0B1A', soft: '#f4c7cc', dot: '#f4c7cc', confetti: ['#8E0B1A', '#ffffff', '#CE1124'] }, { main: '#046A38', dark: '#DA291C', soft: '#bfe0cc', dot: '#bfe0cc', confetti: ['#046A38', '#DA291C', '#FFE900'] }];
+  state = { phase: 'setup', names: ['Noruega', 'Inglaterra'], teams: null, active: 0, running: false, flash: null, last: null, drawResult: null };
+  COLORS = [{ main: '#00205B', dark: '#BA0C2F', soft: '#c9d3ea', dot: '#c9d3ea', confetti: ['#BA0C2F', '#ffffff', '#00205B'] }, { main: '#CE1124', dark: '#8E0B1A', soft: '#f4c7cc', dot: '#f4c7cc', confetti: ['#CE1124', '#8E0B1A', '#1e1b4b'] }];
   async componentDidMount() {
     this.data = await import('./rosco-preguntas.js');
     this.forceUpdate();
     this._key = (e) => this.onKey(e);
     window.addEventListener('keydown', this._key);
   }
-  componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearInterval(this._dv); clearTimeout(this._ft); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); clearInterval(this._iv); clearTimeout(this._ft); }
   T() { return Number(this.props.tiempo ?? 180); }
 
   snd(kind) {
@@ -226,7 +234,7 @@ class Component extends DCLogic {
   onKey(e) {
     const { phase, running } = this.state;
     if (phase === 'setup') { if (e.key === 'Enter' && e.target.tagName !== 'INPUT') this.goDraw(); return; }
-    if (phase === 'draw') { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (this.state.drawSpin) return; this.state.drawResult ? this.start() : this.sortear(); } return; }
+    if (phase === 'draw') { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (this.state.drawResult) this.start(); } return; }
     if (phase !== 'play') return;
     const k = e.key.toLowerCase();
     if (k === ' ' || k === 'escape') { e.preventDefault(); this.toggleRun(); return; }
@@ -237,34 +245,22 @@ class Component extends DCLogic {
   }
   goDraw() {
     if (!this.data) return;
-    clearInterval(this._dv);
-    this.setState({ phase: 'draw', drawSpin: false, drawResult: null, drawTick: 0 });
+    this.setState({ phase: 'draw', drawResult: null });
   }
-  sortear() {
-    if (this.state.drawSpin) return;
-    clearInterval(this._dv);
-    let n = 0;
-    this.setState({ drawSpin: true, drawResult: null, drawTick: 0 });
-    this._dv = setInterval(() => {
-      n++; this.snd('tick'); this.setState({ drawTick: n });
-      if (n >= 18) {
-        clearInterval(this._dv);
-        const first = Math.random() < 0.5 ? 1 : 2; // rosco que le toca al primer equipo
-        this.snd('ok');
-        this.setState({ drawSpin: false, drawResult: [first, 3 - first] });
-      }
-    }, 120);
+  asignar(r) { // r[i] = número de rosco del equipo i; al elegir uno, el otro recibe el restante
+    this.snd('pass');
+    this.setState({ drawResult: r });
   }
   start() {
-    if (!this.data) return;
-    const r = this.state.drawResult || [1, 2]; // r[i] = número de rosco del equipo i
+    const r = this.state.drawResult;
+    if (!this.data || !r) return;
     const sets = { 1: this.data.EQUIPO_A, 2: this.data.EQUIPO_B };
     const mk = (src, rosco) => ({ time: this.T(), idx: 0, done: false, rosco, letters: src.map((q) => ({ ...q, st: 'pending' })) });
-    clearInterval(this._iv); clearInterval(this._dv);
+    clearInterval(this._iv);
     this.snd('start');
     this.setState({ phase: 'play', teams: [mk(sets[r[0]], r[0]), mk(sets[r[1]], r[1])], active: r.indexOf(1), running: false, last: null });
   }
-  restart() { clearInterval(this._iv); clearInterval(this._dv); this.setState({ phase: 'setup', teams: null, running: false, last: null, drawSpin: false, drawResult: null, drawTick: 0 }); }
+  restart() { clearInterval(this._iv); this.setState({ phase: 'setup', teams: null, running: false, last: null, drawResult: null }); }
   setRunning(r) {
     clearInterval(this._iv);
     if (r) { this._iv = setInterval(() => this.tick(), 1000); this.snd('start'); }
@@ -319,28 +315,26 @@ class Component extends DCLogic {
       nameA: names[0], nameB: names[1],
       onNameA: (e) => this.setState({ names: [e.target.value, names[1]] }),
       onNameB: (e) => this.setState({ names: [names[0], e.target.value] }),
-      start: () => this.start(), restart: () => this.restart(), toggleRun: () => this.toggleRun(), goDraw: () => this.goDraw(), sortear: () => this.sortear(),
+      start: () => this.start(), restart: () => this.restart(), toggleRun: () => this.toggleRun(), goDraw: () => this.goDraw(), setR12: () => this.asignar([1, 2]), setR21: () => this.asignar([2, 1]),
       onOk: () => running && this.answer('ok'), onPass: () => running && this.answer('pass'), onKo: () => running && this.answer('ko'),
       runLabel: running ? 'Pausa' : 'Iniciar',
       dotColor: teams && phase === 'play' ? this.COLORS[active].dot : '#e7e2d8',
-      wmIng: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmPor: teams && phase === 'play' && active === 1 ? 0.13 : 0,
+      wmNor: teams && phase === 'play' && active === 0 ? 0.13 : 0, wmIng: teams && phase === 'play' && active === 1 ? 0.13 : 0,
       hasFlash: !!flash, flashText: flash?.text ?? '', flashBg: flash?.bg ?? '#fff', flashFg: flash?.fg ?? '#fff', flashAnim: flash && flash.id % 2 ? 'flashA' : 'flashB',
     };
     if (phase === 'draw') {
-      const { drawSpin, drawResult, drawTick } = this.state;
-      v.drawCards = [0, 1].map((i) => {
-        const c = this.COLORS[i];
-        const spin = ((drawTick + i) % 2) ? '1' : '2';
-        return { name: names[i] || `Equipo ${i + 1}`, rosco: drawResult ? String(drawResult[i]) : drawSpin ? spin : '?', bg: c.main, shadow: c.dark,
-          tr: drawSpin ? (drawTick % 2 ? 'scale(1.03) rotate(-1deg)' : 'scale(0.98) rotate(1deg)') : drawResult ? 'scale(1.02)' : 'scale(1)',
-          op: drawResult || drawSpin ? 1 : 0.85 };
-      });
+      const r = this.state.drawResult;
+      const card = (i) => {
+        const c = this.COLORS[i]; const mine = r ? r[i] : 0;
+        const btn = (n) => (mine === n ? { bg: '#fff', fg: c.main } : { bg: 'transparent', fg: '#fff' });
+        return { name: names[i] || `Equipo ${i + 1}`, rosco: r ? String(r[i]) : '?', bg: c.main, shadow: c.dark,
+          b1Bg: btn(1).bg, b1Fg: btn(1).fg, b2Bg: btn(2).bg, b2Fg: btn(2).fg };
+      };
+      v.dA = card(0); v.dB = card(1);
       const n0 = names[0] || 'Equipo 1', n1 = names[1] || 'Equipo 2';
-      v.drawMsg = drawResult ? `${n0} juega el Rosco ${drawResult[0]} y ${n1} el Rosco ${drawResult[1]}. Empieza ${drawResult[0] === 1 ? n0 : n1}, que tiene el Rosco 1.`
-        : drawSpin ? 'Sorteando…' : 'Pulsa «Sortear» para asignar al azar el rosco de preguntas de cada equipo.';
-      v.drawBtn = drawSpin ? 'Sorteando…' : drawResult ? 'Repetir sorteo' : 'Sortear';
-      const canStart = !!drawResult && !drawSpin;
-      v.startOp = canStart ? 1 : 0.35; v.startPe = canStart ? 'auto' : 'none';
+      v.drawMsg = r ? `${n0}: Rosco ${r[0]} · ${n1}: Rosco ${r[1]}. Empieza ${r[0] === 1 ? n0 : n1}.`
+        : 'Elige el rosco de cada equipo. Al asignar uno, el otro equipo recibe el restante.';
+      const canStart = !!r; v.startOp = canStart ? 1 : 0.35; v.startPe = canStart ? 'auto' : 'none';
     }
     if (!teams) return v;
     const cnt = (t, st) => t.letters.filter((l) => l.st === st).length;

@@ -1,4 +1,4 @@
-ROSCO · Inglaterra vs Portugal
+ROSCO · Noruega vs Inglaterra
 Sube esta carpeta completa a cualquier hosting estático (Netlify, Vercel, GitHub Pages, un servidor web).
 Debe servirse por http/https (no abrir index.html con doble clic: el navegador bloquea los módulos JS en file://).
 
@@ -13,5 +13,5 @@ Teclas: 1 correcta · 2 pasapalabra · 3 error · Espacio iniciar/pausa
 
 Reglas: gana el equipo con más aciertos. Desempate: si igualan en aciertos, gana el que haya usado menos tiempo (segundos consumidos de su reloj).
 
-Sorteo: tras «¡A jugar!» se sortea qué rosco (1 o 2) juega cada equipo; empieza el equipo que recibe el Rosco 1.
+Roscos: tras «¡A jugar!» el moderador asigna el Rosco 1 o 2 a cada equipo (al elegir uno, el otro recibe el restante); empieza el equipo con el Rosco 1.
 La pista aparece con un fundido de 1 s cada vez que cambia, para que nadie la lea antes que el moderador.
