@@ -1,4 +1,4 @@
-ROSCO · Noruega vs Portugal
+ROSCO · Inglaterra vs Portugal
 Sube esta carpeta completa a cualquier hosting estático (Netlify, Vercel, GitHub Pages, un servidor web).
 Debe servirse por http/https (no abrir index.html con doble clic: el navegador bloquea los módulos JS en file://).
 
